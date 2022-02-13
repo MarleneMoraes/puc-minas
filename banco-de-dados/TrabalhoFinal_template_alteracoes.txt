@@ -1,0 +1,17 @@
+/* INSERCOES (INSERT) */
+/* em SQL: */
+/* insercoes em SQL em cada uma das tabelas do banco */
+
+
+
+/* REMOCOES (DELETE) */
+/* remocao 1 */
+/* enunciado: enunciado da remocao aqui */
+/* em SQL: */
+
+
+
+/* MODIFICACOES (UPDATE) */
+/* modificacao 1 */
+/* enunciado: enunciado da modificacao aqui */
+/* em SQL: */

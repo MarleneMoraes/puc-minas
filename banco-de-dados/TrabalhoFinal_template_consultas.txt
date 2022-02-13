@@ -1,0 +1,38 @@
+/* CONSULTAS QUAISQUER */
+/* consulta 1 */
+/* enunciado: enunciado da consulta aqui */
+/* em SQL: */
+
+
+
+
+/* CONSULTAS ENVOLVENDO NOT IN */
+/* consulta 1 */
+/* enunciado: enunciado da consulta aqui */
+/* em SQL: */
+
+
+
+
+/* CONSULTAS ENVOLVENDO GROUP BY E HAVING */
+/* consulta 1 */
+/* enunciado: enunciado da consulta aqui */
+/* em SQL: */
+
+
+
+
+/* CONSULTAS ENVOLVENDO ORDER BY */
+/* consulta 1 */
+/* enunciado: enunciado da consulta aqui */
+/* em SQL: */
+
+
+
+
+/* CONSULTAS ENVOLVENDO EXISTS */
+/* consulta 1 */
+/* enunciado: enunciado da consulta aqui */
+/* em SQL: */
+
+
