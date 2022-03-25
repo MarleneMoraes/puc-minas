@@ -38,11 +38,18 @@ Enunciado:
 * @date 24 mar 2022
 */
 
-import java.util.Locale;
-import java.util.Scanner;
-
 public class Atividade1_SeriesNetflix {
 	public static void main(String[] args) {
-		MyIo
+		Serie[] nomedeserie = new Serie[10];
+		
+		for(int i=0; i <= nomedeserie.length; i++) {
+			nomedeserie[i].ler();
+		}
+		
+		for(int i=0; i <= nomedeserie.length; i++) {
+			nomedeserie[i].imprimir();
+		}
+		
 	}
+	
 }
