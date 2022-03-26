@@ -1,4 +1,4 @@
-package br.pucminas.algoritmosestruturadedadosii.labs.listav;
+package br.pucminas.algoritmosestruturadedadosii.labs.listaii;
 import java.io.*;
 import java.nio.charset.*;
 

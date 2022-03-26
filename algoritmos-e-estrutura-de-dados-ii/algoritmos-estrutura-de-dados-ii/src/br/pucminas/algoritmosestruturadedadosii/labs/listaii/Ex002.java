@@ -2,6 +2,22 @@ package br.pucminas.algoritmosestruturadedadosii.labs.listaii;
 
 import java.util.Random;
 
+/* Enunciado:
+	Faça  um  programa,  em  Java,  que  preencha  uma  matriz  de  
+	ordem  3  x  4  (3  linhas  e  4 colunas) com números inteiros 
+	e positivos; calcule e mostre: 
+ 
+	a) o maior elemento da matriz e sua posição (linha e coluna); 
+	b) o menor elemento da matriz e sua posição (linha e coluna).
+*/
+
+/**
+* Java's Exercices from college 
+* 
+* @author MarleneMoraes
+* @date 25 Feb 2022
+* */
+
 public class Ex002 {
 
 	public static void main(String[] args) {

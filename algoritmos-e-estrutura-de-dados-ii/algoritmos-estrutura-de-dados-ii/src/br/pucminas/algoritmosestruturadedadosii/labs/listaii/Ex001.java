@@ -26,7 +26,6 @@ public class Ex001 {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
-		Scanner scan = new Scanner (System.in);
 		
 		double[] gabarito = new double [8];
 		double[] questoes = new double [8];
@@ -35,8 +34,6 @@ public class Ex001 {
 		
 		
 		
-		scan.close();
-
 	}
 
 }
