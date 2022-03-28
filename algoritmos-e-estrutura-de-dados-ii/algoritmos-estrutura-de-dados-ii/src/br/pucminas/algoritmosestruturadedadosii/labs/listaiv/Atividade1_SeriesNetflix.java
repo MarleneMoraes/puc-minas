@@ -40,14 +40,12 @@ Enunciado:
 
 public class Atividade1_SeriesNetflix {
 	public static void main(String[] args) {
-		Serie[] nomedeserie = new Serie[10];
+		Serie serie = new Serie();
+		serie.ler();
 		
-		for(int i=0; i <= nomedeserie.length; i++) {
-			nomedeserie[i].ler();
-		}
-		
-		for(int i=0; i <= nomedeserie.length; i++) {
-			nomedeserie[i].imprimir();
+		while (!serie.equals("FIM")) {
+			serie.imprimir();
+			serie.ler();
 		}
 		
 	}

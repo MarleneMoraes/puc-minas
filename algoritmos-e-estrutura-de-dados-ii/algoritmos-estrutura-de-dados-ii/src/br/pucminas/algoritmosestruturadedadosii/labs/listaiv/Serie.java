@@ -1,6 +1,6 @@
 package br.pucminas.algoritmosestruturadedadosii.labs.listaiv;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Serie {
 	private String nome;
@@ -104,37 +104,27 @@ public class Serie {
 	}
 
 	public void ler() {
-		MyIO.print("Título: ");
-		this.setNome(MyIO.readString());
+		String string = MyIO.readString();
 		
-		MyIO.print("Formato: ");
-		this.setFormato(MyIO.readString());
 		
-		MyIO.print("Duração: ");
-		this.setDuracao(MyIO.readString());
+		String[] stringArray = string.split(";"); 
 		
-		MyIO.print("País de Origem: ");
-		this.setPaisDeOrigem(MyIO.readString());
+		Arrays.toString(stringArray);
 		
-		MyIO.print("Idioma de Origem: ");
-		this.setIdiomaDeOrigem(MyIO.readString());
+		this.setNome(stringArray[0]);
 		
-		MyIO.print("Emissora de televisão original: ");
-		this.setEmissoraDeTelevisaoOriginal(MyIO.readString());
-		
-		MyIO.print("Data de Início da Transmissão Original: ");
-		this.setDataDeInicio(MyIO.readString());
-		
-		MyIO.print("Número de Temporadas: ");
-		this.setNumeroDeTemporadas(MyIO.readInt());
-		
-		MyIO.print("Número de Episódios: ");
-		this.setNumeroDeEpisodios(MyIO.readInt());
-		
+		this.setFormato(stringArray[1]);
+		this.setDuracao(stringArray[2]);
+		this.setPaisDeOrigem(stringArray[3]);
+		this.setIdiomaDeOrigem(stringArray[4]);
+		this.setEmissoraDeTelevisaoOriginal(stringArray[5]);
+		this.setDataDeInicio(stringArray[6]);
+		this.setNumeroDeTemporadas(Integer.parseInt(stringArray[7]));
+		this.setNumeroDeEpisodios(Integer.parseInt(stringArray[8]));
 	}
 	
 	public void imprimir() {
-		System.out.println(this.getNome() + " ## " + this.getFormato() + " ## " + this.getDuracao() + " ## " + 
+		MyIO.println(this.getNome() + " ## " + this.getFormato() + " ## " + this.getDuracao() + " ## " + 
 						   this.getPaisDeOrigem() + " ## " + this.getEmissoraDeTelevisaoOriginal() + " ## " + 
 						   this.getDataDeInicio() + " ## " + this.getNumeroDeTemporadas() + " ## " + 
 						   this.getNumeroDeEpisodios());
