@@ -1,29 +1,44 @@
 package br.pucminas.algoritmosestruturadedadosii.labs.listaiii;
 
+import java.util.Scanner;
+
 /*	
 	Enunciado:
-	Implemente  um  método,  em  Java,  denominado  combinador,  que  receba  duas 
-	strings. Esse método deve ser capaz de combinar as duas strings recebidas como 
-	parâmetros, alternando as letras de cada string, da seguinte forma: comece com 
-	a primeira letra da primeira string, seguida pela primeira letra da segunda string, 
-	continue  com  a  segunda  letra  da  primeira  string,  e  assim  sucessivamente.  As 
-	letras  restantes  da  cadeia  mais  longa  devem  ser  adicionadas  ao  fim  da  string 
-	resultante, que deve ser retornada. 
-	A  entrada  padrão  é  composta  por  várias  linhas  sendo  que  a  última  apresenta 
-	apenas a palavra FIM. 
+	Crie  um  método  iterativo  em  Java  que  receba  como  parâmetro  uma  string  e 
+	retorne  o  número  de  caracteres  maiúsculos  presentes  nessa  string.  A  entrada 
+	padrão  é  composta  por  várias  linhas  sendo  que  a  última  apresenta  apenas  a 
+	palavra  FIM.  A  saída  padrão  contém  um  número  inteiro  para  cada  linha  de 
+	entrada. 
 */
 
 /**
-* Java's Exercices from college 
-* 
-* @author MarleneMoraes
-* @date 25 Feb 2022
-* */
+ * Java's Exercices from college
+ * 
+ * @author MarleneMoraes
+ * @date 25 Feb 2022
+ */
 
 public class ContarCaracteresIterativo {
 
 	public static void main(String[] args) {
-		
+		Scanner scan = new Scanner(System.in);
+		String string = scan.nextLine();
+		int maiusculas = 0;
+
+		while (!string.equals("FIM")) {
+			for (int i = 0; i < string.length(); i++) {
+				char character = string.charAt(i);
+				if (Character.isUpperCase(character)) {
+					maiusculas++;
+				}
+			}
+			
+			System.out.println(maiusculas);
+			string = scan.nextLine();
+			maiusculas = 0;
+		}
+
+		scan.close();
 	}
 
 }
