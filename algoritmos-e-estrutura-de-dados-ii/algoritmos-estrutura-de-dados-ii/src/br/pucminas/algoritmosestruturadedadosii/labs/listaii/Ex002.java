@@ -22,7 +22,7 @@ public class Ex002 {
 
 	public static void main(String[] args) {
 
-		Random aleatorio = new Random();
+		Random random = new Random();
 		int[][] var = new int[3][4];
 		int maior, menor, linhaMaior, colunaMaior, linhaMenor, colunaMenor;
 
@@ -35,7 +35,7 @@ public class Ex002 {
 		
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 4; j++) {
-				var[i][j] = aleatorio.nextInt(100);
+				var[i][j] = random.nextInt(100);
 				System.out.printf("%d ", var[i][j]);
 			}
 			System.out.println();

@@ -1,7 +1,5 @@
 package br.pucminas.algoritmosestruturadedadosii.labs.listaiv;
 
-import java.util.Arrays;
-
 public class Serie {
 	private String nome;
 	private String formato;
@@ -13,25 +11,21 @@ public class Serie {
 	private int numeroDeTemporadas;
 	private int numeroDeEpisodios;
 	
-	
-	
-	
 	public Serie() { }
 	
-	public Serie(String nome, String formato, String duracao, String paisDeOrigem, String idiomaDeOrigem,
-			String emissoraDeTelevisaoOriginal, String dataDeInicio, int numeroDeTemporadas, int numeroDeEpisodios) {
+  public Serie(String nome, String formato, String duracao, String paisDeOrigem, String idiomaDeOrigem, String emissoraDeTelevisaoOriginal, String dataDeInicio, int numeroDeTemporadas, int numeroDeEpisodios) {
 		this.nome = nome;
 		this.formato = formato;
 		this.duracao = duracao;
 		this.paisDeOrigem = paisDeOrigem;
 		this.idiomaDeOrigem = idiomaDeOrigem;
 		this.emissoraDeTelevisaoOriginal = emissoraDeTelevisaoOriginal;
-		DataDeInicio = dataDeInicio;
+		this.DataDeInicio = dataDeInicio;
 		this.numeroDeTemporadas = numeroDeTemporadas;
 		this.numeroDeEpisodios = numeroDeEpisodios;
 	}
 
-	public String getNome() {
+  public String getNome() {
 		return nome;
 	}
 
@@ -84,7 +78,7 @@ public class Serie {
 	}
 
 	public void setDataDeInicio(String dataDeInicio) {
-		DataDeInicio = dataDeInicio;
+		this.DataDeInicio = dataDeInicio;
 	}
 
 	public int getNumeroDeTemporadas() {
@@ -103,32 +97,46 @@ public class Serie {
 		this.numeroDeEpisodios = numeroDeEpisodios;
 	}
 
+    public Serie clone() throws CloneNotSupportedException {
+		return (Serie) super.clone();
+  }
+
 	public void ler() {
-		String string = MyIO.readString();
+    Serie newSerie = new Serie();
+		String s = MyIO.readLine();
 		
-		
-		String[] stringArray = string.split(";"); 
-		
-		Arrays.toString(stringArray);
-		
-		this.setNome(stringArray[0]);
-		
-		this.setFormato(stringArray[1]);
-		this.setDuracao(stringArray[2]);
-		this.setPaisDeOrigem(stringArray[3]);
-		this.setIdiomaDeOrigem(stringArray[4]);
-		this.setEmissoraDeTelevisaoOriginal(stringArray[5]);
-		this.setDataDeInicio(stringArray[6]);
-		this.setNumeroDeTemporadas(Integer.parseInt(stringArray[7]));
-		this.setNumeroDeEpisodios(Integer.parseInt(stringArray[8]));
+		while (!s.equals("FIM")) {
+			if ( s.indexOf(";") > -1 ) {
+				String[] stringArray = s.split(";");
+				
+				if (stringArray.length > 0) {
+					newSerie.setNome(stringArray[0]);
+					newSerie.setFormato(stringArray[1]);
+					newSerie.setDuracao(stringArray[2]);
+					newSerie.setPaisDeOrigem(stringArray[3]);
+					newSerie.setIdiomaDeOrigem(stringArray[4]);
+					newSerie.setEmissoraDeTelevisaoOriginal(stringArray[5]);
+					newSerie.setDataDeInicio(stringArray[6]);
+					newSerie.setNumeroDeTemporadas(Integer.parseInt(stringArray[7]));
+					newSerie.setNumeroDeEpisodios(Integer.parseInt(stringArray[8]));
+				}
+				
+				newSerie.imprimir();				
+			}			
+			s = MyIO.readLine();
+		}
 	}
 	
 	public void imprimir() {
-		MyIO.println(this.getNome() + " ## " + this.getFormato() + " ## " + this.getDuracao() + " ## " + 
-						   this.getPaisDeOrigem() + " ## " + this.getEmissoraDeTelevisaoOriginal() + " ## " + 
-						   this.getDataDeInicio() + " ## " + this.getNumeroDeTemporadas() + " ## " + 
-						   this.getNumeroDeEpisodios());
+		MyIO.println(this.getNome() + " ## " + 
+							this.getFormato() + " ## " +
+							this.getDuracao() + " ## " + 
+						    this.getPaisDeOrigem() + " ## " +
+						    this.getIdiomaDeOrigem() + " ## " +                    							
+							this.getEmissoraDeTelevisaoOriginal() + " ## " + 
+						    this.getDataDeInicio() + " ## " + 
+							this.getNumeroDeTemporadas() + " ## " + 
+						    this.getNumeroDeEpisodios());
 	}
-	
 	
 }

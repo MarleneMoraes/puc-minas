@@ -34,20 +34,14 @@ Enunciado:
 /**
 * Java's Exercices from college
 * 
-* @author MarleneMoraes
+* @author ArthurAguiar, MarleneMoraes, MiguelCruz
 * @date 24 mar 2022
 */
 
 public class Atividade1_SeriesNetflix {
 	public static void main(String[] args) {
 		Serie serie = new Serie();
-		serie.ler();
-		
-		while (!serie.equals("FIM")) {
-			serie.imprimir();
-			serie.ler();
-		}
-		
+    serie.ler();
 	}
-	
 }
+
