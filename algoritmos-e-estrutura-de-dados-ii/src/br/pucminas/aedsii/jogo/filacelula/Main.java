@@ -2,19 +2,19 @@ package br.pucminas.aedsii.jogo.filacelula;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		Jogo[] jogos = preencherJogos();
 		Fila fila = preencherFila(jogos, scan);
 
 		fila = procedimentos(jogos, fila, scan);
 
-		fila.mostrar();
+		//fila.mostrar(); //for com mostrar (Jogo jogo)
 		scan.close();
 	}
 
@@ -61,8 +61,7 @@ public class Main {
 	}
 
 	public static Fila preencherFila(Jogo[] jogos, Scanner scan) {
-		Jogo sentinela = null;
-		Fila fila = new Fila(sentinela);
+		Fila fila = new Fila();
 
 		String busca = scan.nextLine();
 
@@ -70,7 +69,7 @@ public class Main {
 			Jogo jogo = buscarJogo(jogos, busca);
 
 			if (jogo != null)
-				fila.empilhar(jogo);
+				fila.enfileirar(jogo);
 
 			busca = scan.nextLine();
 		}
@@ -78,7 +77,7 @@ public class Main {
 		return fila;
 	}
 
-	public static Fila procedimentos(Jogo[] jogos, Fila fila, Scanner scan) {
+	public static Fila procedimentos(Jogo[] jogos, Fila fila, Scanner scan) throws Exception {
 		int numeroDeInteracoes = Integer.parseInt(scan.nextLine());
 		char caractere;
 		String elemento;
@@ -89,10 +88,10 @@ public class Main {
 			caractere = linha.charAt(0);
 
 			if (caractere == 'D') {
-				desempilhado = fila.desempilhar();
+				desempilhado = fila.desenfileirar();
 				if (desempilhado != null) {
 					System.out.print("(D) ");
-					desempilhado.printValues();
+					desempilhado.imprimir();
 				}
 			}
 
@@ -102,7 +101,7 @@ public class Main {
 				Jogo jogo = buscarJogo(jogos, elemento);
 
 				if (jogo != null)
-					fila.empilhar(jogo);
+					fila.enfileirar(jogo);
 			}
 		}
 

@@ -1,4 +1,4 @@
-package br.pucminas.aedsii.estruturadedados;
+package br.pucminas.aedsii.jogo;
 
 public class Jogo {
 	private int dia;

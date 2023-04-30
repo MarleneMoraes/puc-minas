@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.jogo.filavetor;
 
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Fila {
 	private Jogo[] fila;
@@ -68,7 +68,7 @@ public class Fila {
 			
 			for (int i = frente; i < tras; i++) {
 				posicao = i % tamanho;
-				fila[posicao].printValues();
+				fila[posicao].imprimir();
 			}
 		} else
 			throw new Exception("Não foi possível mostrar o conteúdo da fila: a fila está vazia!");

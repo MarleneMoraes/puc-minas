@@ -1,14 +1,15 @@
 package br.pucminas.aedsii.jogo.leituradearquivo;
 
 import java.util.Scanner;
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Main {
 	public static void main(String[] args) {
 		Jogo[] jogos = new Jogo[900];
 		
-		ArquivoTextoLeitura arqLeitura = new ArquivoTextoLeitura("C:\\_workspace\\puc-minas\\algoritmos-e-estrutura-de-dados-ii\\src\\br\\pucminas\\aedsii20222\\estruturadedados\\leituradearquivo\\partidas.txt"); //ao testar, substituir caminho pelo caminho da pasta do seu computador 
+		ArquivoTextoLeitura arqLeitura = new ArquivoTextoLeitura("partidas.txt"); //ao testar, substituir caminho pelo caminho da pasta do seu computador 
 		
 		String linha = arqLeitura.ler(); 
 		
@@ -44,7 +45,7 @@ public class Main {
 	    
 	    for (int i = 0; i < jogos.length; i++) {
 		      if(jogos[i].verificarJogo(dia,mes,ano,selecao))
-		        jogos[i].printValues();
+		        jogos[i].imprimir();
 		      
 		 }
 	}

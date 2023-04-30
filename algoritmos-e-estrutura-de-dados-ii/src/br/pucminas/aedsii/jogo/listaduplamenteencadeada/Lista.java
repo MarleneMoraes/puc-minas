@@ -1,7 +1,7 @@
 package br.pucminas.aedsii.jogo.listaduplamenteencadeada;
 
-import br.pucminas.aedsii20222.estruturadedados.Celula;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Celula;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Lista {
 	private Celula primeiro;
@@ -148,7 +148,7 @@ public class Lista {
 
 			while (aux != null) {
 				System.out.print("[" + (posicao++) + "]");
-				aux.getItem().printValues();
+				aux.getItem().imprimir();
 				aux = aux.getProximo();
 			}
 		}

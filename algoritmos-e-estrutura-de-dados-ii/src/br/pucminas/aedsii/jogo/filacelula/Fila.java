@@ -1,72 +1,84 @@
 package br.pucminas.aedsii.jogo.filacelula;
 
-import br.pucminas.aedsii20222.estruturadedados.Celula;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Celula;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Fila {
-	private Celula fundo;
-	private Celula topo;
+	private Celula frente;
+	private Celula tras;
+	private double media = 0;
 
-	public Fila(Jogo jogo) {
+	private int quantJogo = 0;
+	private int soma = 0;
+
+	public Fila() {	
+		
 		Celula sentinela = new Celula();
-		fundo = sentinela;
-		topo = sentinela;
+		frente = sentinela;
+		tras = sentinela;
 	}
 
-	public boolean pilhaVazia() {
-		if (this.fundo == this.topo)
+	public boolean filaVazia() {
+
+		if (frente == tras)
 			return true;
 
 		return false;
 	}
 
-	public void empilhar(Jogo jogo) {
+	public void enfileirar(Jogo jogo) {
 
-		Celula novaCelula = new Celula();
+		Celula novaCelula = new Celula(jogo);
 
-		novaCelula.setProximo(topo);
-		this.topo = novaCelula;
+		tras.setProximo(novaCelula);
+		tras = novaCelula;
+		tras = tras.getProximo();
 	}
 
-	public Jogo desempilhar() {
+	public Jogo desenfileirar() throws Exception {
 
-		if (!pilhaVazia()) {
-			Celula desempilhado = topo;
-			topo = topo.getProximo();
-			desempilhado.setProximo(null);
-			return (desempilhado.getItem());
-		}
+		if (!filaVazia()) {
+			Celula celulaDesenfileirada = frente.getProximo();
+			Celula proximaCelula = celulaDesenfileirada.getProximo();
+			frente.setProximo(proximaCelula);
 
-		return null;
+			if (celulaDesenfileirada == tras)
+				tras = frente;
+
+			return (celulaDesenfileirada.getItem());
+		} else
+			throw new Exception("Não foi possível desenfileirar nenhum item: a fila está vazia!");
 	}
 
-	public Jogo consultarTopo() {
+	public void mostrar(Jogo jogo) throws Exception {
 
-		if (!pilhaVazia())
-			return (topo.getItem());
+		if (!filaVazia()) {
 
-		return null;
-	}
+			Celula aux = frente.getProximo();
 
-	public void mostrar() {
-		Jogo jogo = null;
-		if (!pilhaVazia()) {
-			int index = 0;
-			Fila temp = new Fila(jogo);
-			Celula i = this.topo;
-
-			while (i != this.fundo) {
-				temp.empilhar(i.getItem());
-				i = i.getProximo();
+			while (aux != null) {
+				aux.getItem().imprimir();
+				aux = aux.getProximo();
 			}
-
-			i = temp.topo;
-
-			while (i != temp.fundo) {
-				System.out.println("[" + (index++) + "]" + i.getItem());
-				i = i.getProximo();
-			}
-
-		}
+		} else
+			throw new Exception("Não foi possível imprimir o conteúdo da fila: a fila está vazia!");
 	}
+
+	/*public double obterMediaTemporadas(Jogo[] jogos) throws Exception {
+		
+		if (!filaVazia()) {
+			Celula aux = frente.getProximo();
+
+			while (aux != null) {
+				quantJogo++;
+				soma += aux.getItem().getNumeroDeTemporadas();
+				aux = aux.getProximo();
+			}
+			media = soma / quantJogo;
+			
+			return media;
+		} else
+			throw new Exception("Não foi possível imprimir o conteúdo da fila: a fila está vazia!");
+
+	}*/
 }

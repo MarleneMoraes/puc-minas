@@ -3,7 +3,7 @@ package br.pucminas.aedsii.jogo.listaduplamenteencadeada;
 import java.util.Scanner;
 
 import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 
 public class Main {
@@ -122,7 +122,7 @@ public class Main {
 				removido = lista.removerInicio();
 				if (removido != null) {
 					System.out.println("(R) ");
-					removido.printValues();					
+					removido.imprimir();					
 				}
 
 				break;
@@ -133,7 +133,7 @@ public class Main {
 				removido = lista.remover(posicao);
 				if (removido != null) {
 					System.out.println("(R) ");
-					removido.printValues();
+					removido.imprimir();
 					System.out.println();
 				}
 				break;
@@ -143,7 +143,7 @@ public class Main {
 
 				if (removido != null) {
 					System.out.print("(R) ");
-					removido.printValues();					
+					removido.imprimir();					
 				}
 				
 				break;

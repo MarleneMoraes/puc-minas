@@ -1,7 +1,7 @@
 package br.pucminas.aedsii.jogo.pilhacelula;
 
-import br.pucminas.aedsii20222.estruturadedados.Celula;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Celula;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Pilha {
 	private Celula fundo;

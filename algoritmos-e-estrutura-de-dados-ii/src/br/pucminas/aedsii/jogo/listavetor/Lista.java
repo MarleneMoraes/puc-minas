@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.jogo.listavetor;
 
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Lista {
 	private Jogo[] lista;
@@ -126,7 +126,7 @@ public class Lista {
 
 			for (int i = primeiro; i < ultimo; i++) {
 				System.out.print("[" + i + "]");
-				lista[i].printValues();
+				lista[i].imprimir();
 			}
 		}
 	}

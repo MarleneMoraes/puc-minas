@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.jogo.pilhavetor;
 
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Pilha {
 	private Jogo[] pilha;
@@ -68,7 +68,7 @@ public class Pilha {
 			for (int i = 0; i < topo; i++) {
 				posicao = i % topo;
 				jogo = pilha[posicao];
-				jogo.printValues();
+				jogo.imprimir();
 			}
 		} 
 	}

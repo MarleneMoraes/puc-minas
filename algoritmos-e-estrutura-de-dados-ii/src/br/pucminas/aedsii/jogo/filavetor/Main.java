@@ -2,19 +2,19 @@ package br.pucminas.aedsii.jogo.filavetor;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		Jogo[] jogos = preencherJogos();
 		Fila fila = preencherFila(jogos, scan);
 
 		fila = procedimentos(jogos, fila, scan);
 
-		fila.mostrar();
+		//fila.mostrar();
 
 		scan.close();
 	}
@@ -60,7 +60,7 @@ public class Main {
 		return jogos;
 	}
 
-	public static Fila preencherFila(Jogo[] jogos, Scanner scan) {
+	public static Fila preencherFila(Jogo[] jogos, Scanner scan) throws Exception {
 		Fila fila = new Fila(900);
 
 		String busca = scan.nextLine();
@@ -84,7 +84,7 @@ public class Main {
 		int numeroDeInteracoes = Integer.parseInt(scan.nextLine());
 		char caractere;
 		String elemento;
-		Jogo desenfileirado;
+		Jogo desenfileirado = null;
 
 		for (int i = 0; i < numeroDeInteracoes; i++) {
 			String linha = scan.nextLine();
@@ -99,7 +99,7 @@ public class Main {
 				}
 
 				System.out.print("(D) ");
-				desenfileirado.printValues();
+				desenfileirado.imprimir();
 			}
 
 			if (caractere == 'E') {

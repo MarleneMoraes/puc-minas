@@ -2,8 +2,8 @@ package br.pucminas.aedsii.jogo.pilhavetor;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Main {
 
@@ -91,7 +91,7 @@ public class Main {
 			desempilhado = pilha.desempilhar();
 			if(desempilhado != null){
 			  System.out.print("(D) ");
-			  desempilhado.printValues();
+			  desempilhado.imprimir();
 			}
 		  }
 			 
