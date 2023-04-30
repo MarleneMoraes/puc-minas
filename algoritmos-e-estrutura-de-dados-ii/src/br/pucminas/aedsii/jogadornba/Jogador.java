@@ -1,4 +1,4 @@
-package br.pucminas.aedsii.estruturadedados;
+package br.pucminas.aedsii.jogadornba;
 
 public class Jogador {
 
