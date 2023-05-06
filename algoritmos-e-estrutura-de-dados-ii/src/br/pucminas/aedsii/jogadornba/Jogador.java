@@ -165,7 +165,7 @@ public class Jogador {
     public void imprimir() {
         StringBuilder printString = new StringBuilder();
 
-        printString.append("[" + this.getId() + " ## " + this.getNome() + " ## ");
+        printString.append("## " + this.getId() + " ## " + this.getNome() + " ## ");
 
         if (this.getAltura() < 0) {
             printString.append("nao informado ## ");
@@ -189,7 +189,7 @@ public class Jogador {
 
         printString.append(this.getCidadeNascimento() + " ## ");
 
-        printString.append(this.getEstadoNascimento() + "]");
+        printString.append(this.getEstadoNascimento() + " ##");
 
         System.out.println(printString);
     }
