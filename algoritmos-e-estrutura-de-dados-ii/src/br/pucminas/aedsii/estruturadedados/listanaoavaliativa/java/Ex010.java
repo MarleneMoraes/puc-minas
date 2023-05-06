@@ -52,13 +52,13 @@ class Student {
 		return grade;
 	}
 
-	public void setGrade(double grade) {
+	/*public void setGrade(double grade) {
 		for(int i = 0; i < answerExam.getAnswer().length; i++) {
 			if(answerExam == student.getExam()) {
 				student.g
 			}			
 		}
-	}
+	}*/
 
 	public boolean isApproval(double grade) {
 		return grade >= 5.0;
