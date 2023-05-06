@@ -64,14 +64,15 @@ public class Fila {
 			throw new Exception("Não foi possível imprimir o conteúdo da fila: a fila está vazia!");
 	}
 
-	/*public double obterMediaTemporadas(Jogo[] jogos) throws Exception {
+	public double obterMediaGols(Jogo[] jogos) throws Exception {
 		
 		if (!filaVazia()) {
 			Celula aux = frente.getProximo();
 
 			while (aux != null) {
 				quantJogo++;
-				soma += aux.getItem().getNumeroDeTemporadas();
+				soma += aux.getItem().getPlacarSelecao1();
+				soma += aux.getItem().getPlacarSelecao2();
 				aux = aux.getProximo();
 			}
 			media = soma / quantJogo;
@@ -79,6 +80,5 @@ public class Fila {
 			return media;
 		} else
 			throw new Exception("Não foi possível imprimir o conteúdo da fila: a fila está vazia!");
-
-	}*/
+	}
 }

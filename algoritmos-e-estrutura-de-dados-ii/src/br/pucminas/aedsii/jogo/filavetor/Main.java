@@ -14,7 +14,7 @@ public class Main {
 
 		fila = procedimentos(jogos, fila, scan);
 
-		//fila.mostrar();
+		fila.mostrar();
 
 		scan.close();
 	}
@@ -46,8 +46,8 @@ public class Main {
 
 		ArquivoTextoLeitura arqLeitura = new ArquivoTextoLeitura("partidas.txt"); // ao testar, substituir \tmp\partidas
 
-		for (Jogo jogo : jogos) {
-			String linha = arqLeitura.ler();
+		for (@SuppressWarnings("unused") Jogo jogo : jogos) {
+			String linha = ArquivoTextoLeitura.ler();
 
 			if (linha == null)
 				break;
@@ -72,7 +72,7 @@ public class Main {
 			if (jogo != null) {
 				fila.enfileirar(jogo);
 
-				// fila.obterMediaGols();
+				System.out.println((int) fila.obterMediaGols(jogos));
 			}
 
 			busca = scan.nextLine();
@@ -112,8 +112,9 @@ public class Main {
 						fila.enfileirar(jogo);
 					} catch (Exception e) {
 						e.printStackTrace();
-					} // chama a mesma função
-						// fila.obterMediaGols();
+					} 
+					
+					System.out.println((int) fila.obterMediaGols(jogos));
 				}
 
 			}

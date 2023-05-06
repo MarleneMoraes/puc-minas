@@ -7,6 +7,11 @@ public class Fila {
 	private int frente;
 	private int tras;
 	private int tamanho;
+	
+	private double media = 0;
+
+	private int quantJogo = 0;
+	private int soma = 0;
 
 	public Fila(int tamanho) {
 
@@ -28,7 +33,7 @@ public class Fila {
 
 		if (frente == tras)
 			return true;
-		
+
 		return false;
 	}
 
@@ -36,7 +41,7 @@ public class Fila {
 
 		if (((tras + 1) % tamanho) == (frente % tamanho))
 			return true;
-		
+
 		return false;
 	}
 
@@ -65,12 +70,30 @@ public class Fila {
 
 		if (!filaVazia()) {
 			int posicao;
-			
+
 			for (int i = frente; i < tras; i++) {
 				posicao = i % tamanho;
 				fila[posicao].imprimir();
 			}
 		} else
 			throw new Exception("Não foi possível mostrar o conteúdo da fila: a fila está vazia!");
+	}
+
+	public double obterMediaGols(Jogo[] jogos) {
+
+		if (!filaVazia()) {
+			for (int i = 0; i < fila.length; i++) {
+				if (fila[i] != null) {
+					soma += fila[i].getPlacarSelecao1();
+					soma += fila[i].getPlacarSelecao2();
+					quantJogo++;
+				}
+			}
+			media = soma / quantJogo;
+			
+			return media;
+		} 
+		
+		return 0;
 	}
 }

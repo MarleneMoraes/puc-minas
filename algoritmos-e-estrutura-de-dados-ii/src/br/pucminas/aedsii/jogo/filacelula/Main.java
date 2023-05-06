@@ -47,7 +47,7 @@ public class Main {
 																					// \tmp\partidas
 
 		for (int i = 0; i < jogos.length; i++) {
-			String linha = arqLeitura.ler();
+			String linha = ArquivoTextoLeitura.ler();
 
 			if (linha == null)
 				break;
@@ -100,8 +100,11 @@ public class Main {
 
 				Jogo jogo = buscarJogo(jogos, elemento);
 
-				if (jogo != null)
+				if (jogo != null) { 
 					fila.enfileirar(jogo);
+					
+					System.out.println((int) fila.obterMediaGols(jogos));
+				}
 			}
 		}
 
