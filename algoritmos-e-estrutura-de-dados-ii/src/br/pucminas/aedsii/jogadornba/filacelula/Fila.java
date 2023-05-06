@@ -7,35 +7,37 @@ public class Fila {
 	private Celula frente;
 	private Celula tras;
 
-
+	private double media = 0;
+	private int quantJogadores = 0;
 	private int soma = 0;
 
-	public Fila(Jogador jogador) {
+	public Fila() {
 		Celula sentinela = new Celula();
 		frente = sentinela;
 		tras = sentinela;
 	}
 
-	public boolean filaVazia() {
+	private boolean filaVazia() {
 		if (this.frente == this.tras)
 			return true;
 
 		return false;
 	}
 
-	public void enfileirar(Jogador jogador) {
+	public void enfileirar(Jogador novo) {
 
-		Celula novaCelula = new Celula();
+		Celula novaCelula = new Celula(novo);
 
-		novaCelula.setProximo(tras);
-		this.tras = novaCelula;
+		tras.setProximo(novaCelula);
+		tras = novaCelula;
 	}
 
 	public Jogador desenfileirar() {
-
 		if (!filaVazia()) {
+
 			Celula celulaDesenfileirada = frente.getProximo();
-			frente.setProximo(celulaDesenfileirada.getProximo());
+			Celula proximaCelula = celulaDesenfileirada.getProximo();
+			frente.setProximo(proximaCelula);
 
 			if (celulaDesenfileirada == tras)
 				tras = frente;
@@ -47,20 +49,23 @@ public class Fila {
 	}
 
 	public void mostrar() {
+
 		if (!filaVazia()) {
 			Celula aux = frente.getProximo();
+			int i = 0;
 
 			while (aux != null) {
+				System.out.print("[" + i + "] ");
 				aux.getItem().imprimir();
 				aux = aux.getProximo();
+				i++;
 			}
-		} 
+		}
 	}
 
-	public void obterMediaAltura(Fila fila) {
+	public double obterMediaAltura() {
+
 		if (!filaVazia()) {
-			double media = 0;
-			int quantJogadores = 0;
 			Celula aux = frente.getProximo();
 
 			while (aux != null) {
@@ -68,9 +73,10 @@ public class Fila {
 				soma += aux.getItem().getAltura();
 				aux = aux.getProximo();
 			}
-			media = soma / quantJogadores;
-			
-			System.out.println(Math.ceil(media));
 		}
+
+		media = soma / quantJogadores;
+
+		return media;
 	}
 }

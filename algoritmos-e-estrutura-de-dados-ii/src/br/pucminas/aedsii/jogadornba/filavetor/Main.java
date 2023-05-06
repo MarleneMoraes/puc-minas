@@ -1,4 +1,4 @@
-package br.pucminas.aedsii.jogadornba.filacelula;
+package br.pucminas.aedsii.jogadornba.filavetor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -47,9 +47,9 @@ public class Main {
 
 		while (arqLeitura.hasNextLine()) {
 			String linha = arqLeitura.nextLine();
-			if (i != -1) {
+			if (i != -1)
 				jogadores[i] = Jogador.ler(linha);
-			}
+			
 			i++;
 		}
 		arqLeitura.close();
