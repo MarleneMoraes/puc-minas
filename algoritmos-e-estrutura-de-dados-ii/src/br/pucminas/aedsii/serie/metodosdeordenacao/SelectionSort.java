@@ -5,7 +5,7 @@ import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
 import br.pucminas.aedsii.estruturadedados.MyIO;
 import br.pucminas.aedsii.estruturadedados.Serie;
 
-public class QuickSort {
+public class SelectionSort {
 
 	public static void main(String[] args) {
 		MyIO.setCharset("UTF-8");
@@ -48,19 +48,33 @@ public class QuickSort {
 			inputCount++;
 		}
 
-		quicksort(sortSeries, tamanho, 0, sortSeries.length-1);
+		selectionSort(sortSeries, tamanho);
 	}
 
-	// QuickSort
-	private static void quicksort(Serie[] sortSeries, int n, int esq, int dir) {
+	// SelectionSort
+	private static void selectionSort(Serie[] sortSeries, int n) {
 
 		int troca = 0;
 		int comparacao = 0;
 
-		if (esq < dir) {
-			int part = particao(sortSeries, esq, dir, troca, comparacao);
-			quicksort(sortSeries, esq, part - 1, part);
-			quicksort(sortSeries, part + 1, dir, part);
+		for (int i = 0; i < (sortSeries.length - 1); i++) {
+			int menor = i;
+
+			for (int j = (i + 1); j < sortSeries.length; j++) {
+
+
+				if ((sortSeries[j].getDuracao().compareTo(sortSeries[j + 1].getDuracao()) > 0)
+						|| ((sortSeries[j].getDuracao().compareTo(sortSeries[j + 1].getDuracao()) == 0)
+								&& (sortSeries[j].getNome().compareTo(sortSeries[j + 1].getNome()) > 0))) {
+					menor = j;
+					comparacao++;
+				}
+			}
+			
+			Serie temp = sortSeries[i];
+			sortSeries[i] = sortSeries[menor];
+			sortSeries[menor] = temp;
+			troca++;
 		}
 
 		for (int i = 0; i < n; i++) {
@@ -71,46 +85,12 @@ public class QuickSort {
 
 		long executionTime = System.currentTimeMillis();
 
-		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_quicksort.txt");
+		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_selecao.txt");
 
 		escrita.escrever("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + executionTime
 				+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
 				+ comparacao);
 
 		escrita.fecharArquivo();
-	}
-	
-	private static boolean comparar(Serie serie1, Serie serie2, int comparacao) {
-
-		if (serie1.getNumeroDeEpisodios() < serie2.getNumeroDeEpisodios()) {
-			comparacao++;
-			return true;
-		} else if (serie1.getNumeroDeEpisodios() == serie2.getNumeroDeEpisodios()) {
-			if (serie1.getNome().compareTo(serie2.getNome()) < 0) 
-				return true;
-		}
-		return false;
-	}
-
-	private static int particao(Serie[] vetOrd, int inicio, int fim, int troca, int comparacao) {
-
-		Serie pivot = vetOrd[fim];
-		int part = inicio - 1;
-		for (int i = inicio; i < fim; i++) {
-			if (comparar(vetOrd[i], pivot, comparacao) == true) {
-				part++;
-				trocar(vetOrd, part, i, troca);
-			}
-		}
-		part++;
-		trocar(vetOrd, part, fim, troca);
-		return (part);
-	}
-
-	private static void trocar(Serie[] vetOrd, int i, int j, int troca) {
-		Serie temp = vetOrd[i];
-		vetOrd[i] = vetOrd[j];
-		vetOrd[j] = temp;
-		troca++;
 	}
 }

@@ -56,7 +56,7 @@ public class MergeSort {
 
 		long executionTime = System.currentTimeMillis();
 
-		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_bolha.txt");
+		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_mergesort.txt");
 
 		escrita.escrever("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + executionTime
 				+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
@@ -65,7 +65,7 @@ public class MergeSort {
 		escrita.fecharArquivo();
 	}
 
-	// BubbleSort
+	// MergeSort
 	private static void mergeSort(Serie[] sortSeries, int n, int troca, int comparacao) {
 		int esq = 0;
 		int dir = (sortSeries.length - 1);

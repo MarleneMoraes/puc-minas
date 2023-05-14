@@ -51,7 +51,7 @@ public class InsertSort {
 		insertSort(sortSeries, tamanho);
 	}
 
-	// BubbleSort
+	// InsertSort
 	private static void insertSort(Serie[] sortSeries, int n) {
 
 		int troca = 0;
@@ -85,7 +85,7 @@ public class InsertSort {
 
 		long executionTime = System.currentTimeMillis();
 
-		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_bolha.txt");
+		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_insercao.txt");
 
 		escrita.escrever("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + executionTime
 				+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
