@@ -1,10 +1,10 @@
-package br.pucminas.aedsii.jogo.metodosdeordenacao;
+package br.pucminas.aedsii.jogo.metodosdeordenacao.insertion;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoEscrita;
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoEscrita;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 /**
  * @authors 
@@ -14,41 +14,26 @@ import br.pucminas.aedsii20222.estruturadedados.Jogo;
  *
  */
 
-public class SelectionSort {
+public class Main {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		Jogo[] jogos = preencherJogos();
-
-		int jogosAdd = 0;
-		int comparacao = 0;
-		int troca = 0;
-		Jogo[] jogosBuscados = preencherVetor(jogos, scan, jogosAdd);
-
-		selection(jogosBuscados, jogosAdd, comparacao, troca);
-
-		for (Jogo jogo : jogosBuscados) {
-			if (jogo != null)
-				jogo.printValues();
-		}
-
-		scan.close();
+		insertionSort();
 	}
 
 	// Preenchimento do vetor de Jogos atraves da leitura de arquivos
 	private static Jogo[] preencherJogos() {
-		String PATH = "partidas.txt"; // No VERDE: "tmp\partidas.txt"
+		String PATH = "partidas.txt"; // substituir por "/tmp/partidas.txt"
 
 		Jogo[] jogos = new Jogo[900];
 
 		ArquivoTextoLeitura arqLeitura = new ArquivoTextoLeitura(PATH);
 
-		String linha = arqLeitura.ler();
+		String linha = ArquivoTextoLeitura.ler();
 
 		for (int i = 0; i < jogos.length; i++) {
 			if (linha != null)
 				jogos[i] = Jogo.ler(linha);
 
-			linha = arqLeitura.ler();
+			linha = ArquivoTextoLeitura.ler();
 		}
 
 		arqLeitura.fecharArquivo();
@@ -94,24 +79,42 @@ public class SelectionSort {
 		return null;
 	}
 
-	static void selection(Jogo[] jogo, int n, int comparacao, int troca) {
-		for (int i = 0; i < (n - 1); i++) {
-			int menor = i;
-			
-			for (int j = (i + 1); j < n; j++) {
-				if (maiorValor(jogo[menor], jogo[j])) {
-					menor = j;
-					comparacao++;
-				}
+	// Ordenacao por insercao
+	public static void insertionSort() {
+
+		Scanner scan = new Scanner(System.in);
+		Jogo[] jogos = preencherJogos();
+
+		int jogosAdd = 0;
+		int comparacao = 0;
+		int troca = 0;
+
+		Jogo[] jogosBuscados = preencherVetor(jogos, scan, jogosAdd);
+
+		for (int i = 1; i < jogosBuscados.length; i++) {
+			Jogo aux = jogosBuscados[i];
+			int j;
+
+			for (j = (i - 1); (j >= 0) && (maiorValor(jogosBuscados[j], aux)); j--) {
+				jogosBuscados[j + 1] = jogosBuscados[j];
+				comparacao++;
 			}
-			
-			troca(jogo, i, menor);
+
+			jogosBuscados[j + 1] = aux;
 			troca++;
 		}
-		
+
 		criarArquivoLog(comparacao, troca);
+
+		for (Jogo jogo : jogosBuscados) {
+			if (jogo != null)
+				jogo.imprimir();
+		}
+
+		scan.close();
 	}
 
+	// Verificacao do maior valor para realizar a troca
 	private static boolean maiorValor(Jogo jogo1, Jogo jogo2) {
 		int anoJogo1, anoJogo2, diaJogo1, diaJogo2, mesJogo1, mesJogo2;
 		String selecaoJogo1, selecaoJogo2;
@@ -128,47 +131,25 @@ public class SelectionSort {
 		selecaoJogo1 = jogo1.getSelecao1();
 		selecaoJogo2 = jogo2.getSelecao2();
 
-		if (selecaoJogo1.compareTo(selecaoJogo2) == 1)
+		if (anoJogo1 > anoJogo2 || (anoJogo1 == anoJogo2 && mesJogo1 > mesJogo2)
+				|| (anoJogo1 == anoJogo2 && mesJogo1 == mesJogo2 && diaJogo1 > diaJogo2) || (anoJogo1 == anoJogo2
+						&& mesJogo1 == mesJogo2 && diaJogo1 == diaJogo2 && selecaoJogo1.compareTo(selecaoJogo2) > 0))
 			return true;
-		
-		if (selecaoJogo1.equals(selecaoJogo2)) {
-			if (anoJogo1 > anoJogo2)
-				return true;
-			
-			if (anoJogo1 == anoJogo2) {
-				if (diaJogo1 > diaJogo2)
-					return true;
-				
-				if (diaJogo1 == diaJogo2) {
-					if (mesJogo1 > mesJogo2)
-						return true;
-					
-					if (mesJogo1 == mesJogo2) 
-						return false;
-				}
-			}
-		}
 
 		return false;
 	}
 	
-	private static void troca(Jogo[] jogos, int j, int k) {
-		Jogo temp = jogos[j];
-		jogos[j] = jogos[k];
-		jogos[k] = temp;
-	}
-	
+	// Criacao do Arquivo Log
 	private static void criarArquivoLog(int comparacao, int troca) {
 		long executionTime = System.currentTimeMillis();
 
-		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_bolha.txt");
+		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_insercao.txt");
 
 		escrita.escrever("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + executionTime
 				+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
 				+ comparacao);
 
 		escrita.fecharArquivo();
-		
+
 	}
-	
 }

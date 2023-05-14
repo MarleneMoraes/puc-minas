@@ -1,10 +1,10 @@
-package br.pucminas.aedsii.jogo.metodosdeordenacao;
+package br.pucminas.aedsii.jogo.metodosdeordenacao.bubble;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoEscrita;
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoEscrita;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 /**
  * @authors 
@@ -14,42 +14,29 @@ import br.pucminas.aedsii20222.estruturadedados.Jogo;
  *
  */
 
-public class BubbleSort {
+public class Main {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		Jogo[] jogos = preencherJogos();
 
-		int jogosAdd = 0;
-		int comparacao = 0;
-		int troca = 0;
-		Jogo[] jogosBuscados = preencherVetor(jogos, scan, jogosAdd);
+		bubbleSort();
 
-		jogosBuscados = bubbleSort(jogosBuscados, jogosAdd, comparacao, troca);
-
-		for (Jogo jogo : jogosBuscados) {
-			if(jogo != null) 
-				jogo.printValues();
-		}
-
-		scan.close();
 	}
 
-	//Preenchimento do vetor de Jogos atraves da leitura de arquivos
+	// Preenchimento do vetor de Jogos atraves da leitura de arquivos
 	private static Jogo[] preencherJogos() {
-		String PATH = "C:\\_workspace\\puc-minas\\algoritmos-e-estrutura-de-dados-ii"
-				+ "\\src\\br\\pucminas\\aedsii20222\\estruturadedados\\partidas.txt"; // No VERDE: "tmp\partidas.txt"
-		
-		Jogo[] jogos = new Jogo[900];
+		String PATH = "partidas.txt"; // No VERDE:
+										// "tmp\partidas.txt"
+
+		Jogo[] jogos = new Jogo[1000];
 
 		ArquivoTextoLeitura arqLeitura = new ArquivoTextoLeitura(PATH);
 
-		String linha = arqLeitura.ler();
+		String linha = ArquivoTextoLeitura.ler();
 
 		for (int i = 0; i < jogos.length; i++) {
-			if(linha != null) 
+			if (linha != null)
 				jogos[i] = Jogo.ler(linha);
 
-			linha = arqLeitura.ler();
+			linha = ArquivoTextoLeitura.ler();
 		}
 
 		arqLeitura.fecharArquivo();
@@ -57,7 +44,7 @@ public class BubbleSort {
 		return jogos;
 	}
 
-	//Preenchimento do vetor de Jogos atraves da busca inserida no console
+	// Preenchimento do vetor de Jogos atraves da busca inserida no console
 	private static Jogo[] preencherVetor(Jogo[] jogos, Scanner scan, int jogosAdd) {
 		Jogo[] jogosBuscados = new Jogo[350];
 
@@ -94,27 +81,39 @@ public class BubbleSort {
 
 		return null;
 	}
-	
-	
 
-	// Metodo Bubblesort
-	public static Jogo[] bubbleSort(Jogo[] jogos, int numEntradas, int comparacao, int troca) {
-		for (int i = (numEntradas - 1); i > 0; i--) {
+	// Ordenacao pelo metodo bolha
+	public static void bubbleSort() {
+		Scanner scan = new Scanner(System.in);
+		Jogo[] jogos = preencherJogos();
+
+		int jogosAdd = 0;
+		int comparacao = 0;
+		int troca = 0;
+		Jogo[] jogosBuscados = preencherVetor(jogos, scan, jogosAdd);
+
+		for (int i = (jogosBuscados.length - 1); i > 0; i--) {
 			for (int j = 0; j < i; j++) {
 				comparacao++;
-				
-				if(maiorValor(jogos[j], jogos[j + 1])) {
+
+				if (maiorValor(jogos[j], jogos[j + 1])) {
 					troca(jogos, j, j + 1);
 					troca++;
 				}
 			}
 		}
-		
+
 		criarArquivoLog(comparacao, troca);
 
-		return jogos;
+		for (Jogo jogo : jogosBuscados) {
+			if (jogo != null)
+				jogo.imprimir();
+		}
+
+		scan.close();
 	}
 
+	// Verificacao do maior valor para realizar a troca
 	private static boolean maiorValor(Jogo jogo1, Jogo jogo2) {
 		int anoJogo1, anoJogo2, diaJogo1, diaJogo2, mesJogo1, mesJogo2;
 		String selecaoJogo1, selecaoJogo2;
@@ -131,35 +130,23 @@ public class BubbleSort {
 		selecaoJogo1 = jogo1.getSelecao1();
 		selecaoJogo2 = jogo2.getSelecao2();
 
-		if (diaJogo1 > diaJogo2)
+		if ((diaJogo1 > diaJogo2) || (diaJogo1 == diaJogo2) && (mesJogo1 > mesJogo2)
+				|| (diaJogo1 == diaJogo2) && (mesJogo1 == mesJogo2) && (anoJogo1 > anoJogo2)
+				|| (diaJogo1 == diaJogo2) && (mesJogo1 == mesJogo2) && (anoJogo1 == anoJogo2)
+						&& (selecaoJogo1.compareTo(selecaoJogo2) > 0))
 			return true;
 
-		if (diaJogo1 == diaJogo2) {
-			if (mesJogo1 > mesJogo2)
-				return true;
-
-			if (mesJogo1 == mesJogo2) {
-				if (anoJogo1 > anoJogo2)
-					return true;
-
-				if (anoJogo1 == anoJogo2) {
-					if (selecaoJogo1.compareTo(selecaoJogo2) == 1)
-						return true;
-
-					if (selecaoJogo1.equals(selecaoJogo2))
-						return false;
-				}
-			}
-		}
 		return false;
 	}
-	
+
+	// Trocar um elemento pelo outro
 	private static void troca(Jogo[] jogos, int j, int k) {
 		Jogo temp = jogos[j];
 		jogos[j] = jogos[k];
 		jogos[k] = temp;
 	}
 	
+	// Criacao do Arquivo Log
 	private static void criarArquivoLog(int comparacao, int troca) {
 		long executionTime = System.currentTimeMillis();
 
@@ -170,7 +157,7 @@ public class BubbleSort {
 				+ comparacao);
 
 		escrita.fecharArquivo();
-		
+
 	}
-	
+
 }
