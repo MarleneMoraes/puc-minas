@@ -1,4 +1,4 @@
-package br.pucminas.aedsii.jogadornba.metodosdeordenacao.insertion;
+package br.pucminas.aedsii.jogadornba.metodosdeordenacao.quick;
 
 import java.io.*;
 import java.util.Scanner;
@@ -8,9 +8,9 @@ import br.pucminas.aedsii.jogadornba.Jogador;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
-		
-		insertionsort();
-		
+
+		quicksort();
+
 	}
 
 	// Busca jogador pelo id
@@ -35,7 +35,7 @@ public class Main {
 	private static Jogador[] preencherJogadores() throws FileNotFoundException {
 		Jogador[] jogadores = new Jogador[4000];
 		Scanner arqLeitura = new Scanner(new File(
-				"jogadores.txt")); // br.pucminas.aedsii.jogadornba.jogadores.txt
+				"jogadores.txt"));
 
 		int i = -1;
 
@@ -51,7 +51,7 @@ public class Main {
 		return jogadores;
 	}
 
-	// Armazenamento de jogadores encontrados para realizacao do insertionsort
+	// Armazenamento de jogadores encontrados para realizacao do quicksort
 	private static Jogador[] armazenarJogadores(Scanner scan) throws FileNotFoundException {
 		String entrada = scan.nextLine();
 		Jogador[] jogadores = preencherJogadores();
@@ -74,7 +74,7 @@ public class Main {
 		return construirVetor(jogadoresEncontrados, tamanho);
 	}
 
-	// Construcao do vetor para realizar no insertion com tamanho exato
+	// Construcao do vetor para realizar no quicksort com tamanho exato
 	private static Jogador[] construirVetor(Jogador[] jogadoresEncontrados, int tamanho) {
 		Jogador[] jogadoresOrdenados = new Jogador[tamanho];
 
@@ -84,8 +84,8 @@ public class Main {
 		return jogadoresOrdenados;
 	}
 
-	// Ordenacao por insercao
-	public static void insertionsort() throws FileNotFoundException {
+	// Ordenacao rapida (metodo principal)
+	public static void quicksort() throws FileNotFoundException {
 		MyIO.setCharset("UTF-8");
 		Scanner scan = new Scanner(System.in);
 		Jogador[] jogadoresOrdenados = armazenarJogadores(scan);
@@ -93,20 +93,7 @@ public class Main {
 		int troca = 0;
 		int comparacao = 0;
 
-		for (int i = 1; i < jogadoresOrdenados.length; i++) {
-			Jogador aux = jogadoresOrdenados[i];
-			int j;
-
-			for (j = (i - 1); (j >= 0) && (jogadoresOrdenados[j].getAnoNascimento() > aux.getAnoNascimento()
-					|| (jogadoresOrdenados[j].getAnoNascimento() == aux.getAnoNascimento()
-							&& jogadoresOrdenados[j].getNome().compareTo(aux.getNome()) > 0)); j--) {
-				jogadoresOrdenados[j + 1] = jogadoresOrdenados[j];
-				comparacao++;
-			}
-
-			jogadoresOrdenados[j + 1] = aux;
-			troca++;
-		}
+		quicksort(jogadoresOrdenados, 0, jogadoresOrdenados.length - 1, comparacao, troca);
 
 		for (Jogador jogador : jogadoresOrdenados)
 			jogador.imprimir();
@@ -114,12 +101,45 @@ public class Main {
 		criarArquivoLog(troca, comparacao);
 	}
 
+	// Ordenacao rapida
+	private static void quicksort(Jogador[] jogadores, int esq, int dir, int comparacao, int troca) {
+		if (esq < dir) {
+			
+			Jogador pivot = jogadores[dir];
+			int part = esq - 1;
+			
+			for (int i = esq; i < dir; i++) {
+				if ((jogadores[i].getEstadoNascimento().compareTo(pivot.getEstadoNascimento()) < 0)
+						|| (jogadores[i].getEstadoNascimento().equals(pivot.getEstadoNascimento())
+								&& (jogadores[i].getNome().compareTo(pivot.getNome()) < 0))) {
+					comparacao++;
+					part++;
+					troca(jogadores, part, i);
+					troca++;
+				}
+			}
+			part++;
+			troca(jogadores, part, dir);
+			troca++;
+		
+			quicksort(jogadores, esq, part - 1, comparacao, troca);
+			quicksort(jogadores, part + 1, dir, comparacao, troca);
+		}
+	}
+
+	// Metodo para trocar os jogadores
+	private static void troca(Jogador[] jogadores, int i, int j) {
+		Jogador temp = jogadores[i];
+		jogadores[i] = jogadores[j];
+		jogadores[j] = temp;
+	}
+
 	// Criacao de arquivo de log de armazenamento
 	private static void criarArquivoLog(int troca, int comparacao) {
 		long tempoExecucao = System.currentTimeMillis();
 
 		try {
-			FileWriter arqEscrita = new FileWriter("717623_insercao.txt");
+			FileWriter arqEscrita = new FileWriter("717623_quicksort.txt");
 			arqEscrita.write("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + tempoExecucao
 					+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
 					+ comparacao);

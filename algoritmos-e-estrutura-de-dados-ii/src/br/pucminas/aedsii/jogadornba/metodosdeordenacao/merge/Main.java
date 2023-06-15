@@ -1,4 +1,4 @@
-package br.pucminas.aedsii.jogadornba.metodosdeordenacao.insertion;
+package br.pucminas.aedsii.jogadornba.metodosdeordenacao.merge;
 
 import java.io.*;
 import java.util.Scanner;
@@ -8,9 +8,9 @@ import br.pucminas.aedsii.jogadornba.Jogador;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
-		
-		insertionsort();
-		
+
+		mergesort();
+
 	}
 
 	// Busca jogador pelo id
@@ -35,7 +35,7 @@ public class Main {
 	private static Jogador[] preencherJogadores() throws FileNotFoundException {
 		Jogador[] jogadores = new Jogador[4000];
 		Scanner arqLeitura = new Scanner(new File(
-				"jogadores.txt")); // br.pucminas.aedsii.jogadornba.jogadores.txt
+				"jogadores.txt"));
 
 		int i = -1;
 
@@ -51,7 +51,7 @@ public class Main {
 		return jogadores;
 	}
 
-	// Armazenamento de jogadores encontrados para realizacao do insertionsort
+	// Armazenamento de jogadores encontrados para realizacao do mergesort
 	private static Jogador[] armazenarJogadores(Scanner scan) throws FileNotFoundException {
 		String entrada = scan.nextLine();
 		Jogador[] jogadores = preencherJogadores();
@@ -74,7 +74,7 @@ public class Main {
 		return construirVetor(jogadoresEncontrados, tamanho);
 	}
 
-	// Construcao do vetor para realizar no insertion com tamanho exato
+	// Construcao do vetor para realizar no mergesort com tamanho exato
 	private static Jogador[] construirVetor(Jogador[] jogadoresEncontrados, int tamanho) {
 		Jogador[] jogadoresOrdenados = new Jogador[tamanho];
 
@@ -84,8 +84,8 @@ public class Main {
 		return jogadoresOrdenados;
 	}
 
-	// Ordenacao por insercao
-	public static void insertionsort() throws FileNotFoundException {
+	// Ordenacao por mescla (metodo principal)
+	public static void mergesort() throws FileNotFoundException {
 		MyIO.setCharset("UTF-8");
 		Scanner scan = new Scanner(System.in);
 		Jogador[] jogadoresOrdenados = armazenarJogadores(scan);
@@ -93,20 +93,7 @@ public class Main {
 		int troca = 0;
 		int comparacao = 0;
 
-		for (int i = 1; i < jogadoresOrdenados.length; i++) {
-			Jogador aux = jogadoresOrdenados[i];
-			int j;
-
-			for (j = (i - 1); (j >= 0) && (jogadoresOrdenados[j].getAnoNascimento() > aux.getAnoNascimento()
-					|| (jogadoresOrdenados[j].getAnoNascimento() == aux.getAnoNascimento()
-							&& jogadoresOrdenados[j].getNome().compareTo(aux.getNome()) > 0)); j--) {
-				jogadoresOrdenados[j + 1] = jogadoresOrdenados[j];
-				comparacao++;
-			}
-
-			jogadoresOrdenados[j + 1] = aux;
-			troca++;
-		}
+		mergesort(jogadoresOrdenados, 0, jogadoresOrdenados.length - 1, comparacao, troca);
 
 		for (Jogador jogador : jogadoresOrdenados)
 			jogador.imprimir();
@@ -114,12 +101,54 @@ public class Main {
 		criarArquivoLog(troca, comparacao);
 	}
 
+	// Ordenacao por mescla
+	private static void mergesort(Jogador[] jogadores, int esq, int dir, int comparacao, int troca) {
+		if (esq < dir) {
+			int meio = (esq + dir) / 2;
+			mergesort(jogadores, esq, meio, comparacao, troca);
+			mergesort(jogadores, meio + 1, dir, comparacao, troca);
+
+			int i, j, k;
+
+			// Definir tamanho dos dois subarrays
+			int n1 = meio - esq + 1;
+			int n2 = dir - meio;
+
+			Jogador[] a1 = new Jogador[n1];
+			Jogador[] a2 = new Jogador[n2];
+
+			for (i = 0; i < n1; i++)
+				a1[i] = jogadores[esq + i];
+
+			for (j = 0; j < n2; j++)
+				a2[j] = jogadores[meio + j + 1];
+
+			for (i = j = 0, k = esq; (i < n1 && j < n2); k++) {
+				if ((a1[i].getUniversidade().compareTo(a2[j].getUniversidade()) <= 0)
+						|| (a1[i].getUniversidade().equals(a2[j].getUniversidade()))
+								&& (a1[i].getNome().compareTo(a2[j].getNome()) <= 0))
+					jogadores[k] = a1[i++];
+				else
+					jogadores[k] = a2[j++];
+			}
+
+			if (i == n1)
+				for (; k <= dir; k++)
+					jogadores[k] = a2[j++];
+
+			else
+				for (; k <= dir; k++)
+					jogadores[k] = a1[i++];
+
+		}
+	}
+
 	// Criacao de arquivo de log de armazenamento
 	private static void criarArquivoLog(int troca, int comparacao) {
 		long tempoExecucao = System.currentTimeMillis();
 
 		try {
-			FileWriter arqEscrita = new FileWriter("717623_insercao.txt");
+			FileWriter arqEscrita = new FileWriter("717623_mergesort.txt");
 			arqEscrita.write("Matricula: 717623 \t" + "Tempo de execução em milisegundos: " + tempoExecucao
 					+ "\t Numero de trocas entre elementos: " + troca + "\t Numero de movimentacoes no vetor: "
 					+ comparacao);

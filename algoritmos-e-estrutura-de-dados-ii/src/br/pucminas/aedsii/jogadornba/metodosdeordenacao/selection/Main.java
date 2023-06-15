@@ -8,33 +8,8 @@ import br.pucminas.aedsii.jogadornba.Jogador;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
-		MyIO.setCharset("UTF-8");
-		Scanner scan = new Scanner(System.in);
-		Jogador[] jogadoresOrdenados = armazenarJogadores(scan);
 
-		// Selection Sort
-		int troca = 0;
-		int comparacao = 0;
-
-		for (int i = 0; i < jogadoresOrdenados.length - 1; i++) {
-			int min = i;
-
-			for (int j = (i + 1); j < jogadoresOrdenados.length; j++) {
-				comparacao++;
-
-				if (jogadoresOrdenados[min].getNome().compareTo(jogadoresOrdenados[j].getNome()) > 0)
-					min = j;
-			}
-
-			troca(jogadoresOrdenados, i, min);
-			troca++;
-		}
-
-		// Impressao dos jogadores ordenados
-		for (Jogador jogador : jogadoresOrdenados)
-			jogador.imprimir();
-
-		criarArquivoLog(troca, comparacao);
+		selectionsort();
 
 	}
 
@@ -57,10 +32,9 @@ public class Main {
 	}
 
 	// Preenchimento do vetor principal atraves da leitura de arquivos
-	public static Jogador[] preencherJogadores() throws FileNotFoundException {
+	private static Jogador[] preencherJogadores() throws FileNotFoundException {
 		Jogador[] jogadores = new Jogador[4000];
-		Scanner arqLeitura = new Scanner(new File(
-				"jogadores.txt"));
+		Scanner arqLeitura = new Scanner(new File("jogadores.txt")); // br.pucminas.aedsii.jogadornba.jogadores.txt
 
 		int i = -1;
 
@@ -77,7 +51,7 @@ public class Main {
 	}
 
 	// Armazenamento de jogadores encontrados para realizacao do selectionsort
-	public static Jogador[] armazenarJogadores(Scanner scan) throws FileNotFoundException {
+	private static Jogador[] armazenarJogadores(Scanner scan) throws FileNotFoundException {
 		String entrada = scan.nextLine();
 		Jogador[] jogadores = preencherJogadores();
 		Jogador[] jogadoresEncontrados = new Jogador[4000];
@@ -100,7 +74,7 @@ public class Main {
 	}
 
 	// Construcao do vetor para realizar no selection com tamanho exato
-	public static Jogador[] construirVetor(Jogador[] jogadoresEncontrados, int tamanho) {
+	private static Jogador[] construirVetor(Jogador[] jogadoresEncontrados, int tamanho) {
 		Jogador[] jogadoresOrdenados = new Jogador[tamanho];
 
 		for (int i = 0; i < jogadoresOrdenados.length; i++)
@@ -109,15 +83,45 @@ public class Main {
 		return jogadoresOrdenados;
 	}
 
+	// Ordenacao por selecao
+	public static void selectionsort() throws FileNotFoundException {
+		MyIO.setCharset("UTF-8");
+		Scanner scan = new Scanner(System.in);
+		Jogador[] jogadoresOrdenados = armazenarJogadores(scan);
+
+		int troca = 0;
+		int comparacao = 0;
+
+		for (int i = 0; i < jogadoresOrdenados.length - 1; i++) {
+			int min = i;
+
+			for (int j = (i + 1); j < jogadoresOrdenados.length; j++) {
+				comparacao++;
+
+				if (jogadoresOrdenados[min].getNome().compareTo(jogadoresOrdenados[j].getNome()) > 0)
+					min = j;
+			}
+
+			troca(jogadoresOrdenados, i, min);
+			troca++;
+		}
+
+		// Impressao dos jogadores ordenados
+		for (Jogador jogador : jogadoresOrdenados)
+			jogador.imprimir();
+
+		criarArquivoLog(troca, comparacao);
+	}
+
 	// Metodo para trocar os jogadores
-	public static void troca(Jogador[] jogadores, int i, int min) {
+	private static void troca(Jogador[] jogadores, int i, int min) {
 		Jogador temp = jogadores[i];
 		jogadores[i] = jogadores[min];
 		jogadores[min] = temp;
 	}
 
 	// Criacao de arquivo de log de armazenamento
-	public static void criarArquivoLog(int troca, int comparacao) {
+	private static void criarArquivoLog(int troca, int comparacao) {
 		long tempoExecucao = System.currentTimeMillis();
 
 		try {
