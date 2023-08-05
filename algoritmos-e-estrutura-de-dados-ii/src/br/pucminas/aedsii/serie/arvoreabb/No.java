@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.arvoreabb;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class No {
 	private Serie item;

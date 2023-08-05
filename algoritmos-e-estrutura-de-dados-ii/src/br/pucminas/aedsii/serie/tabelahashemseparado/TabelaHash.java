@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.tabelahashemseparado;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class TabelaHash {
 	private int M;
@@ -24,9 +24,9 @@ public class TabelaHash {
 		
 		int posicao;
 		
-		posicao = funcaoHash(novo.getValor());
+		posicao = funcaoHash(novo.getNumeroDeTemporadas());
 		
-		if (tabelaHash[posicao].pesquisar(novo.getValor()) == null)
+		if (tabelaHash[posicao].pesquisar(novo.getNumeroDeTemporadas()) == null)
 			tabelaHash[posicao].inserir(novo, 0);
 		else
 			throw new Exception("Não foi possível inserir o novo elemento na tabela hash: o elemento já havia sido inserido anteriormente!");

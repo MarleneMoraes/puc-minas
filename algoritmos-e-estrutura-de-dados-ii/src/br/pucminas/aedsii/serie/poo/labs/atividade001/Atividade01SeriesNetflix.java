@@ -1,12 +1,12 @@
 /*	
 	Enunciado:
-		Impress�o aleatoria de dados de series
+		Impressao aleatoria de dados de series
 		Crie   uma   classe  Serie  com   os   atributos   privados:  nome  (String), 
-		formato (String), duracao (String), pa�s de origem (String), idioma de
-		origem (String), emissora de televis�o original (String), data de inicio
-		da transmissao original (String), n�mero de temporadas (int), numero
-		de epis�dios (int).
-		Sua classe tamb�m ter�, pelo menos, dois construtores, e os m�todos
+		formato (String), duracao (String), pais de origem (String), idioma de
+		origem (String), emissora de televisao original (String), data de inicio
+		da transmissao original (String), numero de temporadas (int), numero
+		de episodios (int).
+		Sua classe tambem tera, pelo menos, dois construtores, e os metodos
 		gets, sets, clone, ler e imprimir. O m�todo imprimir exibe os valores
 		dos atributos do objeto (observe o formato de cada linha da sa�da
 		esperada) e o ler l� os atributos de um objeto.
@@ -38,11 +38,28 @@
 
 package br.pucminas.aedsii.serie.poo.labs.atividade001;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.estruturadedados.MyIO;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Atividade01SeriesNetflix {
 	public static void main(String[] args) {
-		Serie serie = new Serie();
-		serie.ler();
+		MyIO.setCharset("UTF-8");
+		
+		
+		String input = MyIO.readLine();
+		
+		int numSeries = Integer.parseInt(input);
+		
+		Serie[] series = new Serie[numSeries];
+		int i = 0;
+		
+		while(series[i].equals("FIM")) {
+			series[i] = Serie.ler();
+			series[i].imprimir();
+			i++;
+		}
+			
+		
+    
 	}
 }

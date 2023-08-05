@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.listavetor;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Lista {
 

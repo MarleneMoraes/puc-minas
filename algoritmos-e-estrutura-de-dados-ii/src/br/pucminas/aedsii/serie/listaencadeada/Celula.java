@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.listaencadeada;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Celula {
 	private Serie item;

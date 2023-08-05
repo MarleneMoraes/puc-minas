@@ -1,4 +1,7 @@
-package br.pucminas.aedsii.estruturadedados;
+package br.pucminas.aedsii.serie;
+
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.estruturadedados.MyIO;
 
 public class Serie {
 	private String nome;
@@ -11,8 +14,7 @@ public class Serie {
 	private int numeroDeTemporadas;
 	private int numeroDeEpisodios;
 
-	public Serie() {
-	}
+	public Serie() { } 
 
 	public Serie(String nome, String formato, String duracao, String paisDeOrigem, String idiomaDeOrigem,
 			String emissoraDeTelevisaoOriginal, String dataDeInicio, int numeroDeTemporadas, int numeroDeEpisodios) {

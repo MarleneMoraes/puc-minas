@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.filavetor;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Fila {
 

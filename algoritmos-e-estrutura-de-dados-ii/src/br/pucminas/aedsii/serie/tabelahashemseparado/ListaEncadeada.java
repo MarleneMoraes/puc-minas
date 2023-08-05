@@ -1,7 +1,7 @@
 package br.pucminas.aedsii.serie.tabelahashemseparado;
 
-import br.pucminas.aedsii.estruturadedados.Celula;
-import br.pucminas.aedsii.estruturadedados.Inteiro;
+import br.pucminas.aedsii.serie.Celula;
+import br.pucminas.aedsii.serie.Serie;
 
 public class ListaEncadeada {
 	private Celula primeiro;
@@ -24,7 +24,7 @@ public class ListaEncadeada {
 		return false;
 	}
 	
-	public void inserir (Inteiro item, int posicao) throws Exception {
+	public void inserir (Serie item, int posicao) throws Exception {
 		
 		if ((posicao >= 0) && (posicao <= tamanho)) {
 			Celula aux = this.primeiro;
@@ -46,9 +46,9 @@ public class ListaEncadeada {
 			throw new Exception ("Não foi possível inserir o item na lista: posição inválida!");
 	}
 	
-	public Inteiro retirar (int posicao) throws Exception {
+	public Serie retirar (int posicao) throws Exception {
 	
-		Inteiro item = null;
+		Serie item = null;
 		
 		if (! listaVazia() ) {
 			if ((posicao >= 0) && (posicao < tamanho)) {
@@ -78,14 +78,14 @@ public class ListaEncadeada {
 		return item;
 	}
 	
-	public Inteiro pesquisar(int dado) {
+	public Serie pesquisar(int dado) {
 	    
-    	Celula aux = primeiro.getProximo();
+		Celula aux = primeiro.getProximo();
     	
     	while (aux != null) {
-    		if (aux.getItem().getValor() == dado) {
+    		if (aux.getItem().getNumeroDeTemporadas() == dado) 
     			return aux.getItem();
-    		}
+    		
     		aux = aux.getProximo();
     	}
     	return null;

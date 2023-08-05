@@ -2,7 +2,7 @@ package br.pucminas.aedsii.serie.filavetor;
 
 import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
 import br.pucminas.aedsii.estruturadedados.MyIO;
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Main {
 

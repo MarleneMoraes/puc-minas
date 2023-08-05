@@ -3,7 +3,7 @@ package br.pucminas.aedsii.serie.tabelahashemseparado;
 import br.pucminas.aedsii.estruturadedados.ArquivoTextoEscrita;
 import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
 import br.pucminas.aedsii.estruturadedados.MyIO;
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -21,7 +21,7 @@ class Main {
 
 		arqLeitura.fecharArquivo();
 
-		TabelaHash tabelaHash = new TabelaHash();
+		//TabelaHash tabelaHash = new TabelaHash();
 
 		String busca = MyIO.readLine();
 		Serie serie = new Serie();
@@ -29,8 +29,8 @@ class Main {
 		while (!busca.equals("FIM")) {
 			serie.setNome(busca);
 
-			if (tabelaHash.pesquisar(serie) == null)
-				tabelaHash.inserir(serie);
+			//if (tabelaHash.pesquisar(serie) == null)
+			//	tabelaHash.inserir(serie);
 
 			busca = MyIO.readLine();
 		}
@@ -40,16 +40,16 @@ class Main {
 		for(int i = 0; i < numeroBuscas; i++){
 		    serie.setNome(busca);
 		    
-		    if(tabelaHash.pesquisar(serie) != null) 
-		    	System.out.println("SIM");
-		    else 
-		    	System.out.println("NAO");
+		    //if(tabelaHash.pesquisar(serie) != null) 
+		    //	System.out.println("SIM");
+		  //  else 
+		   // 	System.out.println("NAO");
 		    
 		    comparacao++;
 		 }
 		
 		try {
-			tabelaHash.imprimir();
+		//	tabelaHash.imprimir();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -1,6 +1,4 @@
-package br.pucminas.aedsii.serie.arvoreabb;
-
-import br.pucminas.aedsii.estruturadedados.Serie;
+package br.pucminas.aedsii.serie;
 
 public class Celula {
 	private Serie item;

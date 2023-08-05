@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.serie.pilhacelula;
 
-import br.pucminas.aedsii.estruturadedados.Serie;
+import br.pucminas.aedsii.serie.Serie;
 
 public class Pilha {
 
