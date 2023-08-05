@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.jogo.arvoreavl;
 
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class No {
 	private Jogo item;

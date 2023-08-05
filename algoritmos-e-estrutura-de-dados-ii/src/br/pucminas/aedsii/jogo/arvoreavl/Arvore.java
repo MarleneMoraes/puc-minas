@@ -1,6 +1,6 @@
 package br.pucminas.aedsii.jogo.arvoreavl;
 
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Arvore {
 private No raiz;
@@ -107,15 +107,15 @@ private No raiz;
 		
 		if (raizSubarvore == null)
 			throw new Exception("Não foi possível remover o item da árvore: chave não encontrada!");
-		else if (chaveRemover == raizSubarvore.getItem().getAno()) {
+		else if (chaveRemover.getAno() == raizSubarvore.getItem().getAno()) {
 			if (raizSubarvore.getEsquerda() == null)
 				raizSubarvore = raizSubarvore.getDireita();
 			else if (raizSubarvore.getDireita() == null)
 				raizSubarvore = raizSubarvore.getEsquerda();
 			else
 				raizSubarvore.setEsquerda(antecessor(raizSubarvore, raizSubarvore.getEsquerda()));
-		} else if (chaveRemover > raizSubarvore.getItem().getAno())
-			raizSubarvore.setDireita(remover(raizSubarvore.getDireita(), chaveRemover));
+		}// else if (chaveRemover > raizSubarvore.getItem().getAno())
+			//raizSubarvore.setDireita(remover(raizSubarvore.getDireita(), chaveRemover));
 		else
 			raizSubarvore.setEsquerda(remover(raizSubarvore.getEsquerda(), chaveRemover));
 			
@@ -142,7 +142,7 @@ private No raiz;
 		
 		if (raizSubarvore != null) {
 			caminhamentoEmOrdem(raizSubarvore.getEsquerda());
-			raizSubarvore.getItem().printValues();
+			raizSubarvore.getItem().imprimir();
 			caminhamentoEmOrdem(raizSubarvore.getDireita());
 		}
 	}

@@ -1,5 +1,7 @@
 package br.pucminas.aedsii.jogo.arvorebuscabinaria;
 
+import br.pucminas.aedsii.jogo.Jogo;
+
 public class No {
     private Jogo item;
     private No esquerda;

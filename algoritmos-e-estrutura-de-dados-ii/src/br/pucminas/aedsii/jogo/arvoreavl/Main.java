@@ -2,9 +2,9 @@ package br.pucminas.aedsii.jogo.arvoreavl;
 
 import java.util.Scanner;
 
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoEscrita;
-import br.pucminas.aedsii20222.estruturadedados.ArquivoTextoLeitura;
-import br.pucminas.aedsii20222.estruturadedados.Jogo;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoEscrita;
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
 
 public class Main {
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Main {
 		Jogo[] jogos = preencherJogos();
 		Arvore arvoreAVL = preencherArvore(jogos, scan);
 
-		arvoreAVL = procedimentos(arvoreAVL, scan);
+		arvoreAVL = procedimentos(jogos, arvoreAVL, scan);
 		
 		scan.close();
 	}
@@ -53,7 +53,7 @@ public class Main {
 		jogo.setAno(ano);
 		jogo.setSelecao1(selecao);
 
-		if (arvore.pesquisar(ano) == null)
+		/*if (arvore.pesquisar(ano) == null)
 			break;
 		else if ((arvore.pesquisar(mes) == null))
 			break;
@@ -63,7 +63,7 @@ public class Main {
 			break;
 		else
 			return jogo;
-		
+		*/
 
 		return null;
 	}
@@ -113,10 +113,10 @@ public class Main {
 	public static Arvore procedimentos(Jogo[] jogos, Arvore arvore, Scanner scan) {
 		String busca = scan.nextLine();
 		
-		buscarJogos(arvore, busca);
+		Jogo jogo = buscarJogo(arvore, busca);
 
 		while(!busca.equals("FIM")) {
-			if(arvore.pesquisar(serie) != null)
+			if(arvore.pesquisar(jogo.getAno()) != null)
 				System.out.println("SIM");
 			else 
 			  	System.out.println("NAO");
@@ -129,6 +129,7 @@ public class Main {
 
 	private static void criarArquivoLog() {
 		long executionTime = System.currentTimeMillis();
+		int comparacao = 0;
 
 		ArquivoTextoEscrita escrita = new ArquivoTextoEscrita("pucminas_arvoreAVL.txt");
 

@@ -1,5 +1,7 @@
 package br.pucminas.aedsii.jogo.arvorebuscabinaria;
 
+import br.pucminas.aedsii.jogo.Jogo;
+
 public class Arvore {
 	private No raiz;
 
@@ -12,18 +14,14 @@ public class Arvore {
 	}
 
 	private Jogo pesquisar(No raizSubarvore, String chave) {
-
-		buscarJogo(jogos, chave);
-
 		if (raizSubarvore == null)
 			return null;
-		/*
-		 * else if (chave.compareTo(raizSubarvore.getItem().getNome()) == 0) return
-		 * raizSubarvore.getItem(); else if
-		 * (chave.compareTo(raizSubarvore.getItem().getNome()) > 0) return
-		 * pesquisar(raizSubarvore.getDireita(), chave); else return
-		 * pesquisar(raizSubarvore.getEsquerda(), chave);
-		 */
+		else if (chave.equals(raizSubarvore.getItem().getSelecao1()))
+			return raizSubarvore.getItem();
+		else if (chave.compareTo(raizSubarvore.getItem().getSelecao1()) > 0)
+			return pesquisar(raizSubarvore.getDireita(), chave);
+		else
+			return pesquisar(raizSubarvore.getEsquerda(), chave);
 	}
 
 	public void inserir(Jogo novo) {
@@ -38,13 +36,12 @@ public class Arvore {
 			if (novo.getMes() == raizSubarvore.getItem().getMes()) {
 				if (novo.getDia() == raizSubarvore.getItem().getDia()) {
 					if (novo == raizSubarvore.getItem())
-				            System.out.println("Nao foi possivel inserir o item na arvore: chave ja inserida anteriormente!");
-				        else if (novo.getSelecao1().compareTo(raizSubarvore.getItem().getNome()) < 0) //novo menor que raiz subarvore
-				            raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), novo));
-				        else
-				            raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), novo));
-
-				        return raizSubarvore;
+						System.out
+								.println("Nao foi possivel inserir o item na arvore: chave ja inserida anteriormente!");
+					else if (novo.getSelecao1().compareTo(raizSubarvore.getItem().getSelecao1()) < 0)
+						raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), novo));
+					else
+						raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), novo));
 
 				} else if (novo.getDia() < raizSubarvore.getItem().getDia())
 					raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), novo));
@@ -69,23 +66,36 @@ public class Arvore {
 	private No remover(No raizSubarvore, Jogo chaveRemover) {
 
 		if (raizSubarvore == null)
-			throw new Exception("Nao foi possivel remover o item da arvore: chave nao encontrada!");
-		else if (chaveRemover.getNome().equals(raizSubarvore.getItem().getNome())) {
-			if (raizSubarvore.getEsquerda() == null)
-				raizSubarvore = raizSubarvore.getDireita();
-			else if (raizSubarvore.getDireita() == null)
-				raizSubarvore = raizSubarvore.getEsquerda();
+			System.out.println("Nao foi possivel remover o item da arvore: chave nao encontrada!");
+		else if (chaveRemover.getAno() == raizSubarvore.getItem().getAno()) {
+			if (chaveRemover.getMes() == raizSubarvore.getItem().getMes()) {
+				if (chaveRemover.getDia() == raizSubarvore.getItem().getDia()) {
+					if (chaveRemover == raizSubarvore.getItem())
+						System.out
+								.println("Nao foi possivel inserir o item na arvore: chave ja inserida anteriormente!");
+					else if (chaveRemover.getSelecao1().compareTo(raizSubarvore.getItem().getSelecao1()) < 0)
+						raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), chaveRemover));
+					else
+						raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), chaveRemover));
+
+					return raizSubarvore;
+
+				} else if (chaveRemover.getDia() < raizSubarvore.getItem().getDia())
+					raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), chaveRemover));
+				else
+					raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), chaveRemover));
+			} else if (chaveRemover.getMes() < raizSubarvore.getItem().getMes())
+				raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), chaveRemover));
 			else
-				raizSubarvore.setEsquerda(antecessor(raizSubarvore, raizSubarvore.getEsquerda()));
-		} else if (chaveRemover.getNome().compareTo(raizSubarvore.getItem().getNome()) > 0)
-			raizSubarvore.setDireita(remover(raizSubarvore.getDireita(), chaveRemover));
+				raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), chaveRemover));
+		} else if (chaveRemover.getAno() < raizSubarvore.getItem().getAno())
+			raizSubarvore.setEsquerda(inserir(raizSubarvore.getEsquerda(), chaveRemover));
 		else
-			raizSubarvore.setEsquerda(remover(raizSubarvore.getEsquerda(), chaveRemover));
+			raizSubarvore.setDireita(inserir(raizSubarvore.getDireita(), chaveRemover));
 
 		return raizSubarvore;
 	}
 
-	
 	private No antecessor(No noRetirar, No raizSubarvore) {
 
 		if (raizSubarvore.getDireita() != null)
@@ -98,16 +108,21 @@ public class Arvore {
 		return raizSubarvore;
 	}
 
-	public void caminhamentoEmOrdem() {
-		caminhamentoEmOrdem(this.raiz);
+	public void caminhamentoEmOrdem(String chave) {
+		caminhamentoEmOrdem(this.raiz, chave);
 	}
 
-	private void caminhamentoEmOrdem(No raizSubarvore) {
-
+	private void caminhamentoEmOrdem(No raizSubarvore, String chave) {
 		if (raizSubarvore != null) {
-			caminhamentoEmOrdem(raizSubarvore.getEsquerda());
-			raizSubarvore.getItem().imprimir();
-			caminhamentoEmOrdem(raizSubarvore.getDireita());
+			if (chave.equals(raizSubarvore.getItem().getSelecao1())) {
+				raizSubarvore.getItem().imprimir();
+			} else if (chave.compareTo(raizSubarvore.getItem().getSelecao1()) > 0) {
+				raizSubarvore.getItem().imprimir();
+				caminhamentoEmOrdem(raizSubarvore.getDireita(), chave);
+			} else {
+				raizSubarvore.getItem().imprimir();
+				caminhamentoEmOrdem(raizSubarvore.getEsquerda(), chave);
+			}
 		}
 	}
 }

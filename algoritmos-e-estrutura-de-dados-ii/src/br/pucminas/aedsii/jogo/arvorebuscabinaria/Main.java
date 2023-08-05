@@ -2,6 +2,9 @@ package br.pucminas.aedsii.jogo.arvorebuscabinaria;
 
 import java.util.Scanner;
 
+import br.pucminas.aedsii.estruturadedados.ArquivoTextoLeitura;
+import br.pucminas.aedsii.jogo.Jogo;
+
 public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -10,20 +13,16 @@ public class Main {
 		int jogosAdd = 0;
 		Jogo[] jogosBuscados = preencherVetor(jogos, scan, jogosAdd);
 
-		//jogosBuscados = bubbleSort(jogosBuscados, jogosAdd);
-
-		for (Jogo jogo : jogosBuscados) {
-			if(jogo != null) 
-				jogo.imprimir();
-		}
-
+		Arvore arvore = preencherArvore(jogosBuscados, scan);
+		
+		procedimentos(arvore, scan);
+		
 		scan.close();
 	}
 
 	//Preenchimento do vetor de Jogos atraves da leitura de arquivos
 	private static Jogo[] preencherJogos() {
-		String PATH = "C:\\_workspace\\puc-minas\\algoritmos-e-estrutura-de-dados-ii"
-				+ "\\src\\br\\pucminas\\aedsii20222\\estruturadedados\\partidas.txt"; // No VERDE: "tmp\partidas.txt"
+		String PATH = "partidas.txt"; // No VERDE: "tmp\partidas.txt"
 		
 		Jogo[] jogos = new Jogo[900];
 
@@ -79,5 +78,41 @@ public class Main {
 		}
 
 		return null;
+	}
+	
+	// Preenchimento da arvore com os IDs encontrados na busca
+	private static Arvore preencherArvore(Jogo[] jogos, Scanner scan) {
+		Arvore arvore = new Arvore();
+		Jogo jogo = new Jogo();
+
+		String busca = scan.nextLine();
+
+		while (!busca.equals("FIM")) {
+			jogo = buscarJogo(jogos, busca);
+
+			if (jogo != null)
+				arvore.inserir(jogo);
+				
+			busca = scan.nextLine();
+		}
+		
+		return arvore;
+	}
+	
+	// Busca na arvore pelos jogos solicitados no terminal
+	public static void procedimentos(Arvore arvore, Scanner scan) {
+		String busca = scan.nextLine();
+
+		while (!busca.equals("FIM")) {
+			if (arvore.pesquisar(busca) != null) {
+				arvore.caminhamentoEmOrdem(busca);
+				System.out.println("SIM");
+			} else {
+				arvore.caminhamentoEmOrdem(busca);
+				System.out.println("NAO");
+			}
+
+			busca = scan.nextLine();
+		}
 	}
 }
