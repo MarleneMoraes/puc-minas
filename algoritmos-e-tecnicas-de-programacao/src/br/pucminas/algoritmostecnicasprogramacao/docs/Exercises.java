@@ -7,74 +7,73 @@ public class Exercises {
 
 	protected static String ex001() {
 		/*
-		 * Suponha que você está desenvolvendo um software para controle de estoque que
-		 * precisa informar como está a quantidade de pacotes de uma ração A: 
-		 * a. se suficiente, para quantidades superiores a 100; 
-		 * b. em alerta, para quantidades entre 100 e 50; 
+		 * Suponha que vocï¿½ estï¿½ desenvolvendo um software para controle de estoque que
+		 * precisa informar como estï¿½ a quantidade de pacotes de uma raï¿½ï¿½o A:
+		 * a. se suficiente, para quantidades superiores a 100;
+		 * b. em alerta, para quantidades entre 100 e 50;
 		 * c. e abaixo do ideal, para quantidades menores do que 50.
-		 * Faça um programa que imprima o status do estoque como base na entrada da
+		 * Faï¿½a um programa que imprima o status do estoque como base na entrada da
 		 * quantidade atual.
 		 */
 
-		System.out.print("Quantidade de pacotes de ração A:");
+		System.out.print("Quantidade de pacotes de raï¿½ï¿½o A:");
 
 		int racao = sc.nextInt();
 		sc.close();
 
-		if (racao > 100) 
+		if (racao > 100)
 			return "Suficiente";
 		else if (racao <= 100 && racao >= 50)
 			return "Em alerta";
-		else 
+		else
 			return "Abaixo do ideal";
-		
+
 	}
 
 	protected static String ex002() {
 		/*
-		 * Faça um programa que leia três números reais representando os lados de um
-		 * triângulo e informe se seu triângulo é Equilátero, Isósceles ou Escaleno.
+		 * Faï¿½a um programa que leia trï¿½s nï¿½meros reais representando os lados de um
+		 * triï¿½ngulo e informe se seu triï¿½ngulo ï¿½ Equilï¿½tero, Isï¿½sceles ou Escaleno.
 		 */
-		
+
 		float[] lado = new float[3];
-		
+
 		for (int i = 0; i < lado.length; i++) {
-			System.out.printf("Informe o tamanho do %dº lado do triângulo: ");
+			System.out.printf("Informe o tamanho do %dï¿½ lado do triï¿½ngulo: ");
 			lado[i] = sc.nextFloat();
 		}
 
-		if ((lado[0] == lado[1]) && (lado[1] == lado[2])) 
-			return "Seu triângulo é equilátero.";
+		if ((lado[0] == lado[1]) && (lado[1] == lado[2]))
+			return "Seu triï¿½ngulo ï¿½ equilï¿½tero.";
 		else if (((lado[0] == lado[1]) && (lado[0] != lado[2])) || ((lado[1] == lado[2]) && (lado[0] != lado[1])))
-			return "Seu triângulo é isósceles.";
+			return "Seu triï¿½ngulo ï¿½ isï¿½sceles.";
 		else
-			return "Seu triângulo é escaleno.";
+			return "Seu triï¿½ngulo ï¿½ escaleno.";
 	}
 
 	protected static String ex003() {
 		/*
-		 * A nota final de um estudante é calculada a partir de três notas atribuídas,
-		 * respectivamente, a um trabalho de laboratório, a uma avaliação semestral e a
-		 * um exame final. A média das três notas mencionadas obedece aos pesos a
-		 * seguir: Nota Peso Trabalho de laboratório 2 Avaliação semestral 3 Exame final
+		 * A nota final de um estudante ï¿½ calculada a partir de trï¿½s notas atribuï¿½das,
+		 * respectivamente, a um trabalho de laboratï¿½rio, a uma avaliaï¿½ï¿½o semestral e a
+		 * um exame final. A mï¿½dia das trï¿½s notas mencionadas obedece aos pesos a
+		 * seguir: Nota Peso Trabalho de laboratï¿½rio 2 Avaliaï¿½ï¿½o semestral 3 Exame final
 		 * 5
 		 * 
-		 * Faça um programa que receba 3 notas, calcule e mostre a média ponderada e o
-		 * conceito que segue a tabela: Média ponderada Conceito >=8 e <=10 A >=7 e < 8
+		 * Faï¿½a um programa que receba 3 notas, calcule e mostre a mï¿½dia ponderada e o
+		 * conceito que segue a tabela: Mï¿½dia ponderada Conceito >=8 e <=10 A >=7 e < 8
 		 * B >=6 e < 7 C >=5 e < 6 D >=0 e < 5 E
 		 */
 
 		float[] nota = new float[3];
-		
+
 		for (int i = 0; i < nota.length; i++) {
-			System.out.printf("Insira o valor da %dª nota: ", (i+1));
+			System.out.printf("Insira o valor da %dï¿½ nota: ", (i + 1));
 			nota[i] = sc.nextFloat();
 		}
-		
 
 		float media = ((nota[0] * 2) + (nota[1] * 3) + (nota[2] * 5)) / (2 + 3 + 5);
 
-		if (media >= 8 && media <= 10) 
+		if (media >= 8 && media <= 10)
 			return "Conceito A";
 		else if (media >= 7 && media < 8)
 			return "Conceito B";
@@ -82,124 +81,123 @@ public class Exercises {
 			return "Conceito C";
 		else if (media >= 5 && media < 6)
 			return "Conceito D";
-		else 
+		else
 			return "Conceito E";
-		
+
 	}
 
 	protected static void ex004() {
 		/*
-		 * Faça um programa que receba três números e mostre-os em ordem crescente.
-		 * Suponha que o usuário digite três números diferentes.
+		 * Faï¿½a um programa que receba trï¿½s nï¿½meros e mostre-os em ordem crescente.
+		 * Suponha que o usuï¿½rio digite trï¿½s nï¿½meros diferentes.
 		 */
 
 		int[] numero = new int[3];
-		
+
 		for (int i = 0; i < numero.length; i++) {
-			System.out.printf("Insira o %dº valor:", (i+1));
+			System.out.printf("Insira o %dï¿½ valor:", (i + 1));
 			numero[i] = sc.nextInt();
 		}
-		
-		if (numero[0] < numero[1] && numero[1] < numero[2]) 
-			System.out.printf("A ordem dos valores são: %d, %d, %d", numero[0], numero[1], numero[2]);
-		else if (numero[0] > numero[1] && numero[1] > numero[2]) 
-			System.out.printf("A ordem dos valores são:  %d, %d, %d", numero[2], numero[1], numero[0]);
-		
+
+		if (numero[0] < numero[1] && numero[1] < numero[2])
+			System.out.printf("A ordem dos valores sï¿½o: %d, %d, %d", numero[0], numero[1], numero[2]);
+		else if (numero[0] > numero[1] && numero[1] > numero[2])
+			System.out.printf("A ordem dos valores sï¿½o:  %d, %d, %d", numero[2], numero[1], numero[0]);
+
 	}
 
 	protected static String ex005() {
 		/*
-		 * Faça um programa que receba um número inteiro e verifique se é par ou ímpar.
+		 * Faï¿½a um programa que receba um nï¿½mero inteiro e verifique se ï¿½ par ou ï¿½mpar.
 		 */
 
 		System.out.print("Insira um valor:");
 		int numero = sc.nextInt();
 		sc.close();
 
-		if (numero % 2 == 0) 
-			return "Este valor é par.";
+		if (numero % 2 == 0)
+			return "Este valor ï¿½ par.";
 		else
-			return "Este valor é impar.";
-		
+			return "Este valor ï¿½ impar.";
 
 	}
 
 	protected static void ex006() {
 		/*
-		 * Faça um programa que receba o código correspondente ao cargo de um
-		 * funcionário e seu salário atual e mostre o cargo, o valor do aumento e seu
-		 * novo salário. Os cargos estão na tabela abaixo:
+		 * Faï¿½a um programa que receba o cï¿½digo correspondente ao cargo de um
+		 * funcionï¿½rio e seu salï¿½rio atual e mostre o cargo, o valor do aumento e seu
+		 * novo salï¿½rio. Os cargos estï¿½o na tabela abaixo:
 		 * 
-		 * Cód Cargo Percentual 1 Escriturário 50% 2 Secretário 35% 3 Caixa 20% 4
-		 * Gerente 10% 5 Diretor Não tem aumento
+		 * Cï¿½d Cargo Percentual 1 Escriturï¿½rio 50% 2 Secretï¿½rio 35% 3 Caixa 20% 4
+		 * Gerente 10% 5 Diretor Nï¿½o tem aumento
 		 */
 
 		double novoSalario = 0;
 
-		System.out.print("Insere código do cargo: ");
+		System.out.print("Insere cï¿½digo do cargo: ");
 		int codigo = sc.nextInt();
 
-		System.out.print("Insira o salário atual: ");
+		System.out.print("Insira o salï¿½rio atual: ");
 		float salario = sc.nextFloat();
 
 		if (codigo == 1) {
 			novoSalario = (salario * 1.5);
-			System.out.println("Cargo 1: Escriturário\nAumento: 50% ");
-			System.out.printf("Novo salário: R$%.2f", novoSalario);
+			System.out.println("Cargo 1: Escriturï¿½rio\nAumento: 50% ");
+			System.out.printf("Novo salï¿½rio: R$%.2f", novoSalario);
 		} else if (codigo == 2) {
 			novoSalario = (salario * 1.35);
-			System.out.println("Cargo 2: Secretário\nAumento: 35%");
-			System.out.printf("Novo salário: R$%.2f", novoSalario);
+			System.out.println("Cargo 2: Secretï¿½rio\nAumento: 35%");
+			System.out.printf("Novo salï¿½rio: R$%.2f", novoSalario);
 		} else if (codigo == 3) {
 			novoSalario = (salario * 1.2);
 			System.out.println("Cargo 3: Caixa\nAumento: 20%");
-			System.out.printf("Novo salário: R$%.2f", novoSalario);
+			System.out.printf("Novo salï¿½rio: R$%.2f", novoSalario);
 		} else if (codigo == 4) {
 			novoSalario = (salario * 1.1);
 			System.out.println("Cargo 4: Gerente\nAumento: 10%");
-			System.out.printf("Novo salário: R$%.2f", novoSalario);
+			System.out.printf("Novo salï¿½rio: R$%.2f", novoSalario);
 		} else if (codigo == 5) {
 			novoSalario = salario + (salario * 0);
 			System.out.println("Cargo 5: Diretor\nAumento: inexistente");
-			System.out.printf("Novo salário: R$%.2f", novoSalario);
+			System.out.printf("Novo salï¿½rio: R$%.2f", novoSalario);
 		} else {
-			System.out.println("Código inválido. Tente novamente.");
+			System.out.println("Cï¿½digo invï¿½lido. Tente novamente.");
 		}
 	}
 
 	protected static void ex007() {
 		/*
-		 * Faça um programa que receba o valor do salário mínimo, o número de horas
-		 * trabalhadas, o número de dependentes do funcionário e a quantidade de horas
-		 * extras trabalhadas. Calcule e mostre o salário a receber do funcionário de
-		 * acordo com as regras a seguir: - O valor da hora trabalhada é igual a 1/5 do
-		 * salário mínimo; - O salário do mês é igual ao número de horas trabalhadas
+		 * Faï¿½a um programa que receba o valor do salï¿½rio mï¿½nimo, o nï¿½mero de horas
+		 * trabalhadas, o nï¿½mero de dependentes do funcionï¿½rio e a quantidade de horas
+		 * extras trabalhadas. Calcule e mostre o salï¿½rio a receber do funcionï¿½rio de
+		 * acordo com as regras a seguir: - O valor da hora trabalhada ï¿½ igual a 1/5 do
+		 * salï¿½rio mï¿½nimo; - O salï¿½rio do mï¿½s ï¿½ igual ao nï¿½mero de horas trabalhadas
 		 * multiplicado pelo valor da hora trabalhada; - Para cada dependente,
 		 * acrescentar R$ 32,00; - Para cada hora extra trabalhada, calcular o valor da
-		 * hora trabalhada acrescida de 50%; - O salário bruto é igual ao salário do mês
+		 * hora trabalhada acrescida de 50%; - O salï¿½rio bruto ï¿½ igual ao salï¿½rio do mï¿½s
 		 * mais o valor dos dependentes mais o valor das horas extras; - Calcular o
 		 * valor do imposto de renda de acordo com a tabela a seguir:
 		 * 
-		 * IRRF Salário bruto Isento Inferior a R$200,00 10% De R$200,00 até R$500,00
+		 * IRRF Salï¿½rio bruto Isento Inferior a R$200,00 10% De R$200,00 atï¿½ R$500,00
 		 * 20% Superior a R$500,00
 		 * 
-		 * O salário líquido é igual ao salário bruto menos o IRRF; A gratificação será
+		 * O salï¿½rio lï¿½quido ï¿½ igual ao salï¿½rio bruto menos o IRRF; A gratificaï¿½ï¿½o serï¿½
 		 * de acordo com a tabela a seguir:
 		 * 
-		 * Salário líquido Gratificação Até R$350,00 R$100,00 Superior a R$350,00
+		 * Salï¿½rio lï¿½quido Gratificaï¿½ï¿½o Atï¿½ R$350,00 R$100,00 Superior a R$350,00
 		 * R$50,00
 		 * 
-		 * O salário a receber do funcionário é igual ao salário líquido mais a
-		 * gratificação
+		 * O salï¿½rio a receber do funcionï¿½rio ï¿½ igual ao salï¿½rio lï¿½quido mais a
+		 * gratificaï¿½ï¿½o
 		 */
 
-		System.out.print("Salário mínimo: ");
+		System.out.print("Salï¿½rio mï¿½nimo: ");
 		float salarioMinimo = sc.nextFloat();
 
 		System.out.print("Horas trabalhadas: ");
 		int horas = sc.nextInt();
 
-		System.out.print("Número de dependentes: ");
+		System.out.print("Nï¿½mero de dependentes: ");
 		int dependente = sc.nextInt();
 
 		System.out.print("Horas extras trabalhadas: ");
@@ -218,9 +216,8 @@ public class Exercises {
 			irrf = 0;
 		else if (salarioBruto >= 200 && salarioBruto <= 500)
 			irrf = 0.1;
-		else 
+		else
 			irrf = 0.2;
-		
 
 		float salarioLiquido = (float) (salarioBruto - irrf);
 
@@ -229,7 +226,7 @@ public class Exercises {
 		else
 			salario = salarioLiquido + 50;
 
-		System.out.printf("Salário a receber: %.2f", salario);
+		System.out.printf("Salï¿½rio a receber: %.2f", salario);
 	}
 
 }
