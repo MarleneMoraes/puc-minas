@@ -1,4 +1,4 @@
-package br.pucminas.progmodlab.exercicios.e02;
+package br.pucminas.progmodlab.exercicios.registrodeestudantes;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class Student {
             }
         }
 
-        return "Estudante já existente.";
+        return "Estudante jï¿½ existente.";
     }
 
     public String update(String enrollment, List<Student> students, String item) {
@@ -57,17 +57,17 @@ public class Student {
 
                 if(item.equals(name)) {
                     student.setName(name);
-                    return "Informação alterada com sucesso.";
+                    return "Informaï¿½ï¿½o alterada com sucesso.";
                 } else if (item.equals(birthDate)) {
                     student.setBirthDate(item);
-                    return "Informação alterada com sucesso.";
+                    return "Informaï¿½ï¿½o alterada com sucesso.";
                 } else {
-                    System.out.println("código inválido");
+                    System.out.println("cï¿½digo invï¿½lido");
                 }
             }
         }
 
-        return "Estudante não encontrado.";
+        return "Estudante nï¿½o encontrado.";
     }
 
     public void seeList(List<Student> students) {

@@ -1,4 +1,4 @@
-package br.pucminas.progmodlab.exercicios.e01;
+package br.pucminas.progmodlab.exercicios.hospitaldaesperanca;
 
 public class Consult {
 	private String date;
