@@ -1,4 +1,4 @@
-package br.pucminas.progmod.aula01.codmodular;
+package br.pucminas.progmodlab.aula01.codmodular;
 
 public class Calculadora {
 	public static int somar(int a, int b) {

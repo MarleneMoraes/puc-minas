@@ -1,4 +1,4 @@
-package br.pucminas.progmod.aula01.codmodular;
+package br.pucminas.progmodlab.aula01.codmodular;
 
 import java.util.Scanner;
 
