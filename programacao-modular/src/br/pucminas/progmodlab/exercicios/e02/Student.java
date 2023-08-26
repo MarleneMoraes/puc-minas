@@ -1,4 +1,4 @@
-package br.pucminas.progmodlab.exercicio02;
+package br.pucminas.progmodlab.exercicios.e02;
 
 import java.util.List;
 

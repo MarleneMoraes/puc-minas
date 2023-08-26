@@ -1,4 +1,4 @@
-package br.pucminas.progmodlab.exercicio03;
+package br.pucminas.progmodlab.exercicios.e03;
 
 public class Calculator {
 	private double number1;

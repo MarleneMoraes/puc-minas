@@ -1,4 +1,4 @@
-package br.pucminas.progmodlab.exercicio01;
+package br.pucminas.progmodlab.exercicios.e01;
 
 public class Equipament {
 	private String name;
